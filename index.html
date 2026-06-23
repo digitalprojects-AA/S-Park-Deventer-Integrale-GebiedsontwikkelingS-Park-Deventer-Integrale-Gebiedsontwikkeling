@@ -1,0 +1,2543 @@
+<!DOCTYPE html>
+
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S-Park Deventer | Verkenning kansrijke scenario's</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+ :root {
+ --primary: #023047;
+ --primary-light: #034569;
+ --secondary: #0077b6;
+ --accent: #00b4d8;
+ --light: #90e0ef;
+ --bg: #caf0f8;
+ --bg-light: #f0f9ff;
+ --white: #ffffff;
+ --text-dark: #1a1a2e;
+ --text-muted: #5a6c7d;
+ --success: #2a9d8f;
+ --warning: #f4a261;
+ }
+
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ html {
+ scroll-behavior: smooth;
+ }
+
+ body {
+ font-family: 'Inter', sans-serif;
+ background: var(--bg-light);
+ color: var(--text-dark);
+ line-height: 1.6;
+ overflow-x: hidden;
+ }
+
+ /* Navigation */
+ .nav {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ background: rgba(255, 255, 255, 0.95);
+ backdrop-filter: blur(10px);
+ z-index: 1000;
+ padding: 1rem 2rem;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+ }
+
+ .nav-logo {
+ display: flex;
+ align-items: center;
+ gap: 0.75rem;
+ font-weight: 700;
+ font-size: 1.1rem;
+ color: var(--primary);
+ }
+
+ .nav-logo svg {
+ width: 32px;
+ height: 32px;
+ }
+
+ .nav-links {
+ display: flex;
+ gap: 2rem;
+ list-style: none;
+ }
+
+ .nav-links a {
+ text-decoration: none;
+ color: var(--text-muted);
+ font-weight: 500;
+ font-size: 0.9rem;
+ transition: color 0.3s ease;
+ }
+
+ .nav-links a:hover {
+ color: var(--primary);
+ }
+
+ /* Hero Section */
+ .hero {
+ min-height: 100vh;
+ background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ position: relative;
+ overflow: hidden;
+ padding: 6rem 2rem 4rem;
+ }
+
+ .hero::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+ opacity: 0.5;
+ }
+
+ .hero-content {
+ max-width: 1000px;
+ text-align: center;
+ position: relative;
+ z-index: 1;
+ }
+
+ .hero-badge {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.5rem;
+ background: rgba(255, 255, 255, 0.15);
+ padding: 0.5rem 1.25rem;
+ border-radius: 50px;
+ color: white;
+ font-size: 0.85rem;
+ font-weight: 500;
+ margin-bottom: 2rem;
+ backdrop-filter: blur(10px);
+ }
+
+ .hero h1 {
+ font-size: clamp(2.5rem, 6vw, 4.5rem);
+ font-weight: 700;
+ color: white;
+ line-height: 1.1;
+ margin-bottom: 1.5rem;
+ }
+
+ .hero p {
+ font-size: clamp(1rem, 2vw, 1.35rem);
+ color: rgba(255, 255, 255, 0.9);
+ max-width: 700px;
+ margin: 0 auto 2.5rem;
+ line-height: 1.7;
+ }
+
+ .hero-stats {
+ display: flex;
+ justify-content: center;
+ gap: 3rem;
+ flex-wrap: wrap;
+ margin-top: 3rem;
+ }
+
+ .stat-item {
+ text-align: center;
+ color: white;
+ }
+
+ .stat-number {
+ font-size: 2.5rem;
+ font-weight: 700;
+ display: block;
+ }
+
+ .stat-label {
+ font-size: 0.85rem;
+ opacity: 0.8;
+ }
+
+ .scroll-indicator {
+ position: absolute;
+ bottom: 2rem;
+ left: 50%;
+ transform: translateX(-50%);
+ color: white;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 0.5rem;
+ animation: bounce 2s infinite;
+ }
+
+ @keyframes bounce {
+ 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+ 40% { transform: translateX(-50%) translateY(-10px); }
+ 60% { transform: translateX(-50%) translateY(-5px); }
+ }
+
+ /* Section Styles */
+ .section {
+ padding: 6rem 2rem;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+
+ .section-header {
+ text-align: center;
+ margin-bottom: 4rem;
+ }
+
+ .section-number {
+ display: inline-block;
+ background: var(--secondary);
+ color: white;
+ width: 40px;
+ height: 40px;
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-weight: 600;
+ margin-bottom: 1rem;
+ }
+
+ .section-title {
+ font-size: clamp(1.75rem, 4vw, 2.5rem);
+ color: var(--primary);
+ margin-bottom: 1rem;
+ }
+
+ .section-subtitle {
+ font-size: 1.1rem;
+ color: var(--text-muted);
+ max-width: 600px;
+ margin: 0 auto;
+ }
+
+ /* Challenge Section */
+ .challenge-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+ gap: 2rem;
+ margin-top: 2rem;
+ }
+
+ .challenge-card {
+ background: white;
+ border-radius: 20px;
+ padding: 2rem;
+ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+ transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .challenge-card:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+ }
+
+ .challenge-icon {
+ width: 56px;
+ height: 56px;
+ border-radius: 16px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 1.25rem;
+ }
+
+ .challenge-icon.vitens {
+ background: linear-gradient(135deg, var(--secondary), var(--accent));
+ }
+
+ .challenge-icon.gemeente {
+ background: linear-gradient(135deg, var(--success), #3dd9a0);
+ }
+
+ .challenge-icon.partners {
+ background: linear-gradient(135deg, var(--warning), #ffcc80);
+ }
+
+ .challenge-card h3 {
+ font-size: 1.25rem;
+ color: var(--primary);
+ margin-bottom: 0.75rem;
+ }
+
+ .challenge-card ul {
+ list-style: none;
+ margin-top: 1rem;
+ }
+
+ .challenge-card li {
+ padding: 0.5rem 0;
+ padding-left: 1.5rem;
+ position: relative;
+ color: var(--text-muted);
+ font-size: 0.95rem;
+ }
+
+ .challenge-card li::before {
+ content: '';
+ position: absolute;
+ left: 0;
+ top: 50%;
+ transform: translateY(-50%);
+ width: 6px;
+ height: 6px;
+ border-radius: 50%;
+ background: var(--accent);
+ }
+
+ /* Ruimtelijke verdeling Section - Full Width */
+ .ruimte-section {
+ background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg) 100%);
+ padding: 6rem 0;
+ }
+
+ .ruimte-container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 2rem;
+ }
+
+ .ruimte-visual {
+ position: relative;
+ margin: 3rem 0;
+ }
+
+ .ruimte-bar {
+ display: flex;
+ border-radius: 16px;
+ overflow: hidden;
+ box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+ min-height: 200px;
+ }
+
+ .zone {
+ padding: 2rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ transition: flex-grow 0.3s ease;
+ }
+
+ .zone:hover {
+ flex-grow: 1.2;
+ }
+
+ .zone-production {
+ background: linear-gradient(135deg, var(--primary), var(--primary-light));
+ flex: 1;
+ }
+
+ .zone-transition {
+ background: linear-gradient(135deg, var(--secondary), var(--accent));
+ flex: 1;
+ }
+
+ .zone-public {
+ background: linear-gradient(135deg, var(--success), #3dd9a0);
+ flex: 1.5;
+ }
+
+ .zone-label {
+ color: white;
+ font-size: 1.1rem;
+ font-weight: 600;
+ margin-bottom: 0.5rem;
+ }
+
+ .zone-desc {
+ color: rgba(255, 255, 255, 0.85);
+ font-size: 0.9rem;
+ line-height: 1.5;
+ }
+
+ .zone-features {
+ margin-top: 1rem;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.5rem;
+ }
+
+ .feature-tag {
+ background: rgba(255, 255, 255, 0.2);
+ color: white;
+ padding: 0.25rem 0.75rem;
+ border-radius: 20px;
+ font-size: 0.75rem;
+ font-weight: 500;
+ }
+
+ .ruimte-legend {
+ display: flex;
+ justify-content: center;
+ gap: 2rem;
+ margin-top: 2rem;
+ flex-wrap: wrap;
+ }
+
+ .legend-item {
+ display: flex;
+ align-items: center;
+ gap: 0.5rem;
+ font-size: 0.9rem;
+ color: var(--text-muted);
+ }
+
+ .legend-dot {
+ width: 12px;
+ height: 12px;
+ border-radius: 50%;
+ }
+
+ /* Image Gallery */
+ .image-gallery {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 1.5rem;
+ margin: 2rem 0;
+ }
+
+ .gallery-item {
+ border-radius: 16px;
+ overflow: hidden;
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+ }
+
+ .gallery-item img {
+ width: 100%;
+ height: 250px;
+ object-fit: cover;
+ display: block;
+ transition: transform 0.3s ease;
+ }
+
+ .gallery-item:hover img {
+ transform: scale(1.05);
+ }
+
+ .gallery-caption {
+ padding: 1rem;
+ background: white;
+ font-size: 0.9rem;
+ color: var(--text-muted);
+ text-align: center;
+ }
+
+ /* Key Solution */
+ .solution-highlight {
+ background: white;
+ border-radius: 24px;
+ padding: 3rem;
+ box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+ margin-top: 3rem;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 3rem;
+ align-items: center;
+ }
+
+ @media (max-width: 768px) {
+ .scenario-grid { grid-template-columns: 1fr; }
+ .solution-highlight {
+ grid-template-columns: 1fr;
+ }
+ }
+
+ .solution-text h3 {
+ font-size: 1.5rem;
+ color: var(--primary);
+ margin-bottom: 1rem;
+ }
+
+ .solution-text p {
+ color: var(--text-muted);
+ line-height: 1.8;
+ }
+
+ .solution-visual {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+
+ .water-visual {
+ width: 200px;
+ height: 200px;
+ position: relative;
+ }
+
+ .water-circle {
+ position: absolute;
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ font-weight: 600;
+ font-size: 0.85rem;
+ text-align: center;
+ }
+
+ .water-circle.outer {
+ width: 200px;
+ height: 200px;
+ background: linear-gradient(135deg, var(--success), #3dd9a0);
+ top: 0;
+ left: 0;
+ }
+
+ .water-circle.middle {
+ width: 140px;
+ height: 140px;
+ background: linear-gradient(135deg, var(--secondary), var(--accent));
+ top: 30px;
+ left: 30px;
+ }
+
+ .water-circle.inner {
+ width: 80px;
+ height: 80px;
+ background: linear-gradient(135deg, var(--primary), var(--primary-light));
+ top: 60px;
+ left: 60px;
+ }
+
+ /* SVG overlay voor boogtekst */
+ .water-visual svg.water-arc-svg {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 200px;
+ height: 200px;
+ z-index: 10;
+ pointer-events: none;
+ }
+
+ .water-arc-text {
+ fill: white;
+ font-family: 'Inter', sans-serif;
+ font-weight: 600;
+ font-size: 11px;
+ letter-spacing: 0.02em;
+ }
+
+ .water-arc-text.outer-text {
+ font-size: 12px;
+ }
+
+ .water-arc-text.middle-text {
+ font-size: 10px;
+ }
+
+ /* Parties Section */
+ .parties-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+ gap: 1.5rem;
+ }
+
+ .party-card {
+ background: white;
+ border-radius: 20px;
+ padding: 2rem;
+ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+ border-left: 4px solid;
+ transition: transform 0.3s ease;
+ }
+
+ .party-card:hover {
+ transform: translateX(5px);
+ }
+
+ .party-card.vitens { border-color: var(--secondary); }
+ .party-card.gemeente { border-color: var(--success); }
+ .party-card.partners { border-color: var(--warning); }
+ .party-card.onderwijs { border-color: var(--accent); }
+
+ .party-header {
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ margin-bottom: 1rem;
+ }
+
+ .party-logo {
+ width: 48px;
+ height: 48px;
+ border-radius: 12px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ font-weight: 700;
+ font-size: 0.75rem;
+ }
+
+ .party-card.vitens .party-logo { background: var(--secondary); }
+ .party-card.gemeente .party-logo { background: var(--success); }
+ .party-card.partners .party-logo { background: var(--warning); }
+ .party-card.onderwijs .party-logo { background: var(--accent); }
+
+ .party-name {
+ font-weight: 600;
+ color: var(--primary);
+ }
+
+ .party-wishes {
+ list-style: none;
+ }
+
+ .party-wishes li {
+ padding: 0.4rem 0;
+ padding-left: 1.25rem;
+ position: relative;
+ color: var(--text-muted);
+ font-size: 0.9rem;
+ }
+
+ .party-wishes li::before {
+ content: '';
+ position: absolute;
+ left: 0;
+ top: 50%;
+ transform: translateY(-50%);
+ width: 5px;
+ height: 5px;
+ border-radius: 50%;
+ }
+
+ .party-card.vitens .party-wishes li::before { background: var(--secondary); }
+ .party-card.gemeente .party-wishes li::before { background: var(--success); }
+ .party-card.partners .party-wishes li::before { background: var(--warning); }
+ .party-card.onderwijs .party-wishes li::before { background: var(--accent); }
+
+ /* Hoofdgebouw Section */
+ .hoofdgebouw-section {
+ background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+ padding: 6rem 0;
+ color: white;
+ }
+
+ .hoofdgebouw-container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 2rem;
+ }
+
+ .hoofdgebouw-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+ gap: 1.5rem;
+ margin-top: 3rem;
+ }
+
+ .hoofdgebouw-card {
+ background: rgba(255, 255, 255, 0.1);
+ backdrop-filter: blur(10px);
+ border-radius: 20px;
+ padding: 2rem;
+ text-align: center;
+ transition: transform 0.3s ease;
+ }
+
+ .hoofdgebouw-card:hover {
+ transform: translateY(-5px);
+ background: rgba(255, 255, 255, 0.15);
+ }
+
+ .hoofdgebouw-icon {
+ font-size: 3rem;
+ margin-bottom: 1rem;
+ }
+
+ .hoofdgebouw-card h4 {
+ font-size: 1.1rem;
+ margin-bottom: 0.5rem;
+ }
+
+ .hoofdgebouw-card p {
+ font-size: 0.9rem;
+ opacity: 0.85;
+ }
+
+ .tower-highlight {
+ background: linear-gradient(135deg, var(--warning), #ffcc80);
+ color: var(--primary);
+ border-radius: 24px;
+ padding: 3rem;
+ margin-top: 3rem;
+ text-align: center;
+ }
+
+ .tower-highlight h3 {
+ font-size: 1.75rem;
+ margin-bottom: 1rem;
+ }
+
+ .tower-highlight p {
+ font-size: 1.1rem;
+ line-height: 1.8;
+ max-width: 700px;
+ margin: 0 auto;
+ }
+
+ /* Warmte Section */
+ .warmte-section {
+ background: white;
+ padding: 6rem 2rem;
+ }
+
+ .warmte-container {
+ max-width: 1000px;
+ margin: 0 auto;
+ }
+
+ .warmte-banner {
+ background: linear-gradient(135deg, var(--secondary), var(--accent));
+ border-radius: 24px;
+ padding: 3rem;
+ color: white;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 2rem;
+ align-items: center;
+ }
+
+ @media (max-width: 768px) {
+ .warmte-banner {
+ grid-template-columns: 1fr;
+ }
+ }
+
+ .warmte-content h3 {
+ font-size: 1.75rem;
+ margin-bottom: 1rem;
+ }
+
+ .warmte-content p {
+ line-height: 1.8;
+ opacity: 0.95;
+ }
+
+ .warmte-icon {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+
+ .warmte-icon svg {
+ width: 150px;
+ height: 150px;
+ }
+
+ /* Ambitions Section */
+ .ambition-banner {
+ background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+ border-radius: 24px;
+ padding: 3rem;
+ color: white;
+ margin: 2rem 0;
+ }
+
+ .ambition-banner h3 {
+ font-size: 1.5rem;
+ margin-bottom: 1rem;
+ }
+
+ .ambition-banner p {
+ font-size: 1.1rem;
+ line-height: 1.8;
+ opacity: 0.95;
+ max-width: 800px;
+ }
+
+ .pillars-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+ gap: 1.5rem;
+ margin-top: 3rem;
+ }
+
+ .pillar-card {
+ background: white;
+ border-radius: 20px;
+ padding: 2rem;
+ text-align: center;
+ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+ transition: transform 0.3s ease;
+ }
+
+ .pillar-card:hover {
+ transform: translateY(-5px);
+ }
+
+ .pillar-icon {
+ width: 64px;
+ height: 64px;
+ margin: 0 auto 1.25rem;
+ background: linear-gradient(135deg, var(--bg), var(--bg-light));
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ }
+
+ .pillar-card h4 {
+ font-size: 1.1rem;
+ color: var(--primary);
+ margin-bottom: 0.5rem;
+ }
+
+ .pillar-card p {
+ color: var(--text-muted);
+ font-size: 0.9rem;
+ }
+
+ /* Routekaart */
+ .roadmap {
+ display: flex;
+ flex-direction: column;
+ gap: 1.5rem;
+ margin-top: 2rem;
+ }
+
+ .roadmap-item {
+ display: flex;
+ gap: 1.5rem;
+ align-items: flex-start;
+ }
+
+ .roadmap-number {
+ width: 50px;
+ height: 50px;
+ border-radius: 50%;
+ background: linear-gradient(135deg, var(--secondary), var(--accent));
+ color: white;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-weight: 700;
+ flex-shrink: 0;
+ }
+
+ .roadmap-content {
+ flex: 1;
+ background: white;
+ border-radius: 16px;
+ padding: 1.5rem;
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+ }
+
+ .roadmap-content h4 {
+ color: var(--primary);
+ margin-bottom: 0.5rem;
+ }
+
+ .roadmap-content p {
+ color: var(--text-muted);
+ font-size: 0.95rem;
+ }
+
+ /* Footer */
+ .footer {
+ background: var(--primary);
+ color: white;
+ padding: 4rem 2rem 2rem;
+ text-align: center;
+ }
+
+ .footer-content {
+ max-width: 600px;
+ margin: 0 auto;
+ }
+
+ .footer h3 {
+ font-size: 1.5rem;
+ margin-bottom: 1rem;
+ }
+
+ .footer p {
+ opacity: 0.8;
+ margin-bottom: 2rem;
+ }
+
+ .footer-badges {
+ display: flex;
+ justify-content: center;
+ gap: 1rem;
+ flex-wrap: wrap;
+ }
+
+ .footer-badge {
+ background: rgba(255, 255, 255, 0.1);
+ padding: 0.5rem 1rem;
+ border-radius: 8px;
+ font-size: 0.85rem;
+ }
+
+ .footer-copy {
+ margin-top: 3rem;
+ padding-top: 2rem;
+ border-top: 1px solid rgba(255, 255, 255, 0.1);
+ font-size: 0.85rem;
+ opacity: 0.6;
+ }
+
+ /* Animations */
+ .fade-in {
+ opacity: 0;
+ transform: translateY(30px);
+ transition: opacity 0.6s ease, transform 0.6s ease;
+ }
+
+ .fade-in.visible {
+ opacity: 1;
+ transform: translateY(0);
+ }
+
+ /* Mobile Responsive */
+ @media (max-width: 768px) {
+ .nav-links {
+ display: none;
+ }
+
+ .hero-stats {
+ gap: 2rem;
+ }
+
+ .ruimte-bar {
+ flex-direction: column;
+ }
+
+ .solution-highlight {
+ padding: 2rem;
+ }
+ }
+
+ /* Print Styles */
+ @media print {
+ .nav, .scroll-indicator {
+ display: none;
+ }
+
+ .section {
+ padding: 2rem 1rem;
+ }
+ }
+ 
+
+/* Tijdlijn */
+.tijdlijn-subtitle {
+ font-size: 1.05rem;
+ color: var(--text-muted);
+ max-width: 720px;
+ margin: 0 auto;
+}
+.timeline {
+ position: relative;
+ margin: 3rem auto 0;
+ max-width: 1000px;
+ padding: 0 1rem;
+}
+.timeline::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ left: 50%;
+ width: 3px;
+ transform: translateX(-50%);
+ border-radius: 6px;
+ background: linear-gradient(180deg, var(--secondary), var(--accent));
+ opacity: 0.6;
+}
+.timeline-item {
+ position: relative;
+ width: 50%;
+ padding: 0 2.5rem 2.5rem;
+}
+.timeline-item.left {
+ left: 0;
+ text-align: right;
+}
+.timeline-item.right {
+ left: 50%;
+ text-align: left;
+}
+.timeline-card {
+ display: inline-block;
+ width: 100%;
+ max-width: 430px;
+ background: var(--white);
+ border-radius: 16px;
+ padding: 1.5rem;
+ box-shadow: 0 6px 28px rgba(0, 0, 0, 0.06);
+ border: 1px solid rgba(0, 0, 0, 0.04);
+}
+.timeline-item.left .timeline-card {
+ margin-left: auto;
+}
+.timeline-date {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.5rem;
+ padding: 0.35rem 0.85rem;
+ border-radius: 999px;
+ background: linear-gradient(135deg, var(--bg), var(--bg-light));
+ color: var(--primary);
+ font-weight: 600;
+ font-size: 0.85rem;
+ margin-bottom: 0.75rem;
+}
+.timeline-card h4 {
+ color: var(--primary);
+ margin-bottom: 0.5rem;
+ font-size: 1.05rem;
+}
+.timeline-card p {
+ color: var(--text-muted);
+ font-size: 0.95rem;
+ line-height: 1.7;
+}
+.timeline-dot {
+ position: absolute;
+ top: 1.75rem;
+ width: 14px;
+ height: 14px;
+ border-radius: 50%;
+ background: var(--white);
+ border: 4px solid var(--warning);
+ box-shadow: 0 0 0 5px rgba(0, 180, 216, 0.12);
+}
+.timeline-item.left .timeline-dot {
+ left: calc(100% - 7px);
+ transform: translateX(50%);
+}
+.timeline-item.right .timeline-dot {
+ left: 7px;
+ transform: translateX(-50%);
+}
+.timeline-item::after {
+ content: '';
+ position: absolute;
+ top: 2.1rem;
+ width: 26px;
+ height: 2px;
+ background: rgba(0, 180, 216, 0.35);
+}
+.timeline-item.left::after {
+ right: -13px;
+}
+.timeline-item.right::after {
+ left: -13px;
+}
+
+@media (max-width: 768px) {
+ .timeline::before {
+ left: 14px;
+ transform: none;
+ }
+ .timeline-item {
+ width: 100%;
+ left: 0;
+ text-align: left;
+ padding: 0 0 2rem 2.5rem;
+ }
+ .timeline-item.left .timeline-card,
+ .timeline-item.right .timeline-card {
+ margin-left: 0;
+ max-width: 100%;
+ }
+ .timeline-dot {
+ left: 14px !important;
+ transform: translateX(-50%) !important;
+ }
+ .timeline-item::after {
+ left: 1px;
+ right: auto;
+ width: 18px;
+ }
+}
+
+
+
+/* Extra animaties en scenario sectie */
+.challenge-icon.gemeenten {
+ background: linear-gradient(135deg, var(--success), #3dd9a0);
+}
+.party-card.gemeenten { border-color: var(--success); }
+.party-card.gemeenten .party-logo { background: var(--success); }
+.party-card.gemeenten .party-wishes li::before { background: var(--success); }
+.party-card.waterschap { border-color: #2a9d8f; }
+.party-card.waterschap .party-logo { background: #2a9d8f; }
+.party-card.waterschap .party-wishes li::before { background: #2a9d8f; }
+
+.hero {
+ background-size: 200% 200%;
+ animation: heroGradientShift 16s ease infinite;
+}
+.hero::after {
+ content: '';
+ position: absolute;
+ inset: auto auto -120px -120px;
+ width: 320px;
+ height: 320px;
+ border-radius: 50%;
+ background: radial-gradient(circle, rgba(255,255,255,0.12), rgba(255,255,255,0));
+ filter: blur(8px);
+ animation: pulseGlow 8s ease-in-out infinite;
+}
+.hero-orbs {
+ position: absolute;
+ inset: 0;
+ pointer-events: none;
+ overflow: hidden;
+}
+.hero-orb {
+ position: absolute;
+ border-radius: 50%;
+ background: rgba(255,255,255,0.12);
+ backdrop-filter: blur(2px);
+ animation: orbFloat 12s ease-in-out infinite;
+}
+.hero-orb:nth-child(1) { width: 90px; height: 90px; top: 18%; left: 10%; animation-delay: 0s; }
+.hero-orb:nth-child(2) { width: 50px; height: 50px; top: 25%; right: 14%; animation-delay: 1.2s; }
+.hero-orb:nth-child(3) { width: 130px; height: 130px; bottom: 14%; right: 8%; animation-delay: 2.5s; }
+.hero-orb:nth-child(4) { width: 70px; height: 70px; bottom: 20%; left: 16%; animation-delay: 3.2s; }
+.hero-content {
+ animation: heroFloat 7s ease-in-out infinite;
+}
+.hero-badge,
+.stat-item,
+.feature-tag,
+.footer-badge {
+ animation: softPulse 4s ease-in-out infinite;
+}
+.hero-badge { animation-delay: .2s; }
+.stat-item:nth-child(2) { animation-delay: .4s; }
+.stat-item:nth-child(3) { animation-delay: .6s; }
+.stat-item:nth-child(4) { animation-delay: .8s; }
+.section-number {
+ box-shadow: 0 10px 25px rgba(0, 119, 182, 0.18);
+ animation: pulseGlow 4s ease-in-out infinite;
+}
+.challenge-card,
+.party-card,
+.pillar-card,
+.hoofdgebouw-card,
+.roadmap-content,
+.timeline-card,
+.gallery-item,
+.zone,
+.warmte-banner,
+.ambition-banner,
+.tower-highlight,
+.scenario-card {
+ transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+.challenge-card:hover,
+.party-card:hover,
+.pillar-card:hover,
+.hoofdgebouw-card:hover,
+.roadmap-content:hover,
+.timeline-card:hover,
+.scenario-card:hover {
+ transform: translateY(-10px) scale(1.015);
+ box-shadow: 0 18px 50px rgba(0, 180, 216, 0.18);
+}
+.zone:hover {
+ transform: translateY(-6px);
+}
+.water-circle.outer { animation: rotateSlow 24s linear infinite; }
+.water-circle.middle { animation: rotateSlowReverse 18s linear infinite; }
+.water-circle.inner { animation: softPulse 4.5s ease-in-out infinite; }
+.timeline-dot { animation: softPulse 3.5s ease-in-out infinite; }
+.scroll-indicator svg { animation: softPulse 2s ease-in-out infinite; }
+.nav.scrolled {
+ background: rgba(255, 255, 255, 0.98);
+ box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+}
+.fade-in {
+ transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in:nth-child(2) { transition-delay: .08s; }
+.fade-in:nth-child(3) { transition-delay: .16s; }
+.fade-in:nth-child(4) { transition-delay: .24s; }
+.fade-in:nth-child(5) { transition-delay: .32s; }
+
+/* Scenario planning */
+.scenario-grid {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(250px, 1fr));
+ gap: 1.5rem;
+ margin-top: 2rem;
+}
+.scenario-card {
+ position: relative;
+ overflow: hidden;
+ background: white;
+ border-radius: 22px;
+ padding: 2rem;
+ box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+ border: 1px solid rgba(0,0,0,0.04);
+}
+.scenario-card::before {
+ content: '';
+ position: absolute;
+ inset: 0 auto auto 0;
+ width: 100%;
+ height: 6px;
+}
+.scenario-card.energiek::before { background: linear-gradient(90deg, #f4a261, #ffcc80); }
+.scenario-card.kabbelend::before { background: linear-gradient(90deg, #2a9d8f, #3dd9a0); }
+.scenario-card.veilig::before { background: linear-gradient(90deg, #023047, #0077b6); }
+.scenario-card.bruisend::before { background: linear-gradient(90deg, #00b4d8, #90e0ef); }
+.scenario-label {
+ display: inline-flex;
+ align-items: center;
+ gap: .5rem;
+ padding: .45rem .9rem;
+ border-radius: 999px;
+ font-size: .8rem;
+ font-weight: 600;
+ margin-bottom: 1rem;
+}
+.scenario-card.energiek .scenario-label { background: rgba(244,162,97,.14); color: #b25b16; }
+.scenario-card.kabbelend .scenario-label { background: rgba(42,157,143,.14); color: #1f7f75; }
+.scenario-card.veilig .scenario-label { background: rgba(2,48,71,.12); color: #023047; }
+.scenario-card.bruisend .scenario-label { background: rgba(0,180,216,.12); color: #0077b6; }
+.scenario-card h3 {
+ color: var(--primary);
+ margin-bottom: .75rem;
+ font-size: 1.25rem;
+}
+.scenario-card p {
+ color: var(--text-muted);
+ font-size: .95rem;
+ line-height: 1.75;
+ margin-bottom: 1rem;
+}
+.scenario-points {
+ list-style: none;
+}
+.scenario-points li {
+ position: relative;
+ padding-left: 1.2rem;
+ margin: .45rem 0;
+ color: var(--text-muted);
+ font-size: .9rem;
+}
+.scenario-points li::before {
+ content: '';
+ position: absolute;
+ left: 0;
+ top: .55rem;
+ width: 6px;
+ height: 6px;
+ border-radius: 50%;
+ background: var(--accent);
+}
+.scenario-card .scenario-foot {
+ margin-top: 1.2rem;
+ padding-top: 1rem;
+ border-top: 1px solid rgba(0,0,0,0.06);
+ font-size: .82rem;
+ color: var(--text-muted);
+}
+
+@keyframes heroGradientShift {
+ 0% { background-position: 0% 50%; }
+ 50% { background-position: 100% 50%; }
+ 100% { background-position: 0% 50%; }
+}
+@keyframes heroFloat {
+ 0%, 100% { transform: translateY(0px); }
+ 50% { transform: translateY(-10px); }
+}
+@keyframes orbFloat {
+ 0%, 100% { transform: translate3d(0,0,0); }
+ 50% { transform: translate3d(0,-18px,0); }
+}
+@keyframes pulseGlow {
+ 0%, 100% { box-shadow: 0 0 0 rgba(255,255,255,0.0); opacity: 1; }
+ 50% { box-shadow: 0 0 40px rgba(255,255,255,0.10); opacity: .96; }
+}
+@keyframes softPulse {
+ 0%, 100% { transform: translateY(0); }
+ 50% { transform: translateY(-3px); }
+}
+@keyframes rotateSlow {
+ from { transform: rotate(0deg); }
+ to { transform: rotate(360deg); }
+}
+@keyframes rotateSlowReverse {
+ from { transform: rotate(360deg); }
+ to { transform: rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+ .hero,
+ .hero-content,
+ .hero-orb,
+ .hero-badge,
+ .stat-item,
+ .section-number,
+ .water-circle,
+ .timeline-dot,
+ .scroll-indicator,
+ .footer-badge {
+ animation: none !important;
+ }
+}
+
+
+/* Inspiratie schetsen */
+.schetsen-section {
+ background: linear-gradient(180deg, #f8fcff 0%, var(--bg-light) 100%);
+ padding: 6rem 0;
+}
+.schetsen-container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 2rem;
+}
+.schetsen-intro {
+ max-width: 760px;
+ margin: 0 auto 2.5rem;
+ text-align: center;
+ color: var(--text-muted);
+ font-size: 1rem;
+ line-height: 1.8;
+}
+.schets-pagina {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 2rem;
+ align-items: start;
+}
+.schets-pagina-enkel {
+ max-width: 900px;
+ margin: 0 auto;
+ grid-template-columns: 1fr;
+}
+
+.schets-pagina-enkel .schets-card img {
+ height: auto;
+ max-height: 900px;
+ object-fit: contain;
+ background: white;
+}
+.schets-pagina-breed {
+ width: 100%;
+ max-width: 1200px;
+ margin: 0 auto;
+ display: grid;
+ grid-template-columns: 1fr;
+ gap: 2rem;
+}
+
+.schets-pagina-breed .schets-card img {
+ width: 100%;
+ height: auto;
+ max-height: none;
+ object-fit: contain;
+ background: white;
+}
+.schets-card {
+ background: white;
+ border-radius: 22px;
+ overflow: hidden;
+ box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+ border: 1px solid rgba(0,0,0,0.05);
+}
+.schets-card img {
+ width: 100%;
+ height: 520px;
+ object-fit: cover;
+ display: block;
+ background: #eaf4fb;
+}
+.schets-volledig {
+ height: 420px !important;
+ object-fit: contain !important;
+ background: white !important;
+}
+.schets-card figcaption {
+ padding: 1rem 1.25rem 1.25rem;
+ color: var(--text-muted);
+ font-size: 0.95rem;
+ line-height: 1.6;
+}
+.schets-toevoegen {
+ margin-top: 1.75rem;
+ padding: 1rem 1.25rem;
+ border-radius: 16px;
+ background: rgba(0, 180, 216, 0.08);
+ color: var(--primary);
+ font-size: 0.95rem;
+}
+@media (max-width: 900px) {
+ .schets-pagina {
+ grid-template-columns: 1fr;
+ }
+ .schets-card img {
+ height: 380px;
+ }
+}
+@media print {
+ .schetsen-section {
+ page-break-before: auto;
+ break-before: auto;
+ }
+ .schets-pagina {
+ gap: 1.2rem;
+ page-break-inside: avoid;
+ break-inside: avoid-page;
+ }
+ .schets-pagina + .schets-pagina {
+ page-break-before: always;
+ break-before: page;
+ }
+ .schets-card {
+ page-break-inside: avoid;
+ break-inside: avoid-page;
+ box-shadow: none;
+ border: 1px solid #d8e5ee;
+ }
+ .schets-card img {
+ height: 10.5cm;
+ }
+}
+
+
+/* Onderbouwing, placeholders en bronnen */
+.onderbouwing-blok,.bronnen-blok{background:white;border-radius:20px;padding:2rem;box-shadow:0 6px 28px rgba(0,0,0,.06);margin:2rem auto 0;max-width:1000px}.onderbouwing-blok h3,.bronnen-blok h3{color:var(--primary);margin-bottom:.85rem;font-size:1.3rem}.onderbouwing-blok p,.bronnen-blok>p{color:var(--text-muted);line-height:1.8;margin-bottom:1rem}.onderbouwing-label{display:inline-block;margin-bottom:.75rem;padding:.35rem .75rem;border-radius:999px;background:rgba(0,180,216,.10);color:var(--primary);font-size:.82rem;font-weight:600}.bronvermelding-klein{margin-top:.75rem;color:var(--text-muted);font-size:.92rem;text-align:center}.placeholder-grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;margin-top:2rem}.placeholder-card{background:white;border-radius:20px;padding:1rem;box-shadow:0 6px 28px rgba(0,0,0,.06)}.placeholder-box{width:100%;min-height:280px;border:2px dashed rgba(0,119,182,.25);border-radius:16px;background:linear-gradient(180deg,#f8fcff 0%,#eef8ff 100%);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text-muted);font-weight:600;padding:1rem}.placeholder-card p{padding:.85rem .25rem 0;color:var(--text-muted);font-size:.92rem}.placeholder-box.klein{min-height:220px}.canvas-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;margin-top:2rem}.bron-item{background:#f8fcff;border:1px solid rgba(0,119,182,.14);border-radius:14px;padding:1rem 1.25rem;margin-bottom:1rem}.bron-item summary{cursor:pointer;color:var(--primary);font-weight:700;font-size:1rem}.bron-item pre{white-space:pre-wrap;word-wrap:break-word;margin-top:1rem;color:var(--text-muted);font-family:'Inter',sans-serif;line-height:1.75;font-size:.93rem}@media(max-width:900px){.placeholder-grid-2,.canvas-grid{grid-template-columns:1fr}}
+
+
+/* Bronnen breed over de volledige sectie */
+.bronnen-blok {
+ width: 100% !important;
+ max-width: 1200px !important;
+}
+
+.parties-grid .bronnen-blok {
+ grid-column: 1 / -1 !important;
+ width: 100% !important;
+ max-width: 100% !important;
+}
+
+.bron-item pre {
+ max-width: 100% !important;
+}
+
+
+/* Extra ruimte tussen toelichtingsblokken en kaarten/beelden */
+.onderbouwing-blok + .parties-grid,
+.onderbouwing-blok + .schets-pagina,
+.onderbouwing-blok + .challenge-grid,
+.onderbouwing-blok + .placeholder-grid-2,
+.onderbouwing-blok + .roadmap,
+.onderbouwing-blok + .scenario-grid,
+.onderbouwing-blok + .placeholder-card {
+ margin-top: 2.5rem !important;
+}
+
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="nav">
+<div class="nav-logo">
+<svg fill="none" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20" cy="20" r="18" stroke="#023047" stroke-width="3"></circle>
+<path d="M20 8C20 8 12 16 12 22C12 26.4183 15.5817 30 20 30C24.4183 30 28 26.4183 28 22C28 16 20 8 20 8Z" fill="#00b4d8"></path>
+</svg>
+ S-Park Deventer
+ </div>
+<ul class="nav-links">
+<li><a href="#inleiding">Inleiding</a></li>
+<li><a href="#aanpak">Aanpak</a></li>
+<li><a href="#achtergrond">Achtergrond</a></li>
+<li><a href="#crossover">Cross-over</a></li>
+<li><a href="#scenario">Scenario's</a></li>
+<li><a href="#water">Water</a></li>
+<li><a href="#energie">Energie</a></li>
+<li><a href="#natuur">Natuur</a></li>
+<li><a href="#waarde">Waarde</a></li>
+<li><a href="#schetsen">Verkenningen</a></li>
+<li><a href="#ambitie">Ambitie</a></li>
+<li><a href="#aanbevelingen">Vervolg</a></li>
+<li><a href="#tijdlijn">Tijdlijn</a></li>
+<li><a href="#teamreflectie">Reflectie</a></li></ul>
+</nav>
+<!-- Hero Section -->
+<section class="hero">
+<div class="hero-content">
+<div class="hero-badge">
+<svg fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
+<path d="M8 0L10 6H16L11 10L13 16L8 12L3 16L5 10L0 6H6L8 0Z"></path>
+</svg>
+ Visievormend onderzoek
+ </div>
+<h1>Verkenning kansrijke scenario's<br/>S-Park Deventer</h1>
+<p>Waar betrouwbare drinkwaterproductie en openbare waarde elkaar versterken. Een verkenning van kansrijke scenario's voor de nieuwe waterproductielocatie van Vitens in Deventer, direct aan de IJssel.</p>
+<div class="hero-stats">
+<div class="stat-item">
+<span class="stat-number">5</span>
+<span class="stat-label">Gebiedspartners</span>
+</div>
+<div class="stat-item">
+<span class="stat-number">4</span>
+<span class="stat-label">Scenario's</span>
+</div>
+<div class="stat-item">
+<span class="stat-number">3</span>
+<span class="stat-label">Zones</span>
+</div>
+<div class="stat-item">
+<span class="stat-number">1</span>
+<span class="stat-label">Visie?</span>
+</div>
+</div>
+</div>
+<div class="hero-orbs">
+<span class="hero-orb"></span>
+<span class="hero-orb"></span>
+<span class="hero-orb"></span>
+<span class="hero-orb"></span>
+</div>
+<div class="scroll-indicator">
+<span style="font-size: 0.8rem; opacity: 0.8;">Scroll</span>
+<svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12l7 7 7-7"></path>
+</svg>
+</div>
+</section><section class="section" id="inleiding">
+<div class="section-header fade-in">
+<span class="section-number">1</span>
+<h2 class="section-title">Inleiding: aanleiding, behoefte en doel</h2>
+<p class="section-subtitle">Waarom dit onderzoek is gestart en wat deze verkenning moet opleveren</p>
+</div>
+<div class="onderbouwing-blok fade-in" style="max-width:1200px;">
+<span class="onderbouwing-label">Achtergrond</span>
+<h3>Van drinkwateropgave naar integrale gebiedsontwikkeling</h3>
+<p>Vitens moet in Deventer een nieuwe waterproductielocatie realiseren door een stijgende watervraag en beperkingen in de huidige capaciteit. In het vooronderzoek met de gemeente Deventer is S-Park, direct naast de Oude Gasfabriek, als voorkeurslocatie naar voren gekomen. De ligging biedt kansen om bestaande infrastructuur te benutten en de nieuwe productielocatie niet als losstaand technisch terrein te behandelen.</p>
+<p>De gemeente Deventer heeft aangegeven dat de ontwikkeling breder bekeken moet worden dan alleen drinkwaterproductie. Het gebied vraagt om een integrale benadering waarin veiligheid, ruimtegebruik, bereikbaarheid, duurzaamheid, openbare kwaliteit en maatschappelijke waarde in samenhang worden afgewogen.</p>
+<p>Het doel van deze verkenning is daarom om kansrijke scenario’s, functiecombinaties en innovaties in beeld te brengen. De uitkomst is geen definitief ontwerp, maar een onderbouwde verkenning van kansrijke scenario’s en een gezamenlijke ambitie die Vitens, de gemeente en gebiedspartners kunnen gebruiken voor vervolgbesluitvorming.</p>
+</div>
+<div class="challenge-grid">
+<div class="challenge-card fade-in">
+<h3>Context</h3>
+<p style="color: var(--text-muted);">S-Park ligt op een strategische locatie aan de IJssel en naast de Oude Gasfabriek. Daardoor komen drinkwaterproductie, gebiedsontwikkeling, energie, natuur en publieke beleving samen.</p>
+</div>
+<div class="challenge-card fade-in">
+<h3>Opgave</h3>
+<p style="color: var(--text-muted);">De centrale vraag is hoe een veilige productielocatie van Vitens gecombineerd kan worden met maatschappelijke, ecologische en economische meerwaarde voor het gebied.</p>
+</div>
+<div class="challenge-card fade-in">
+<h3>Resultaat</h3>
+<p style="color: var(--text-muted);">Deze website brengt de opgehaalde inzichten samen in scenario’s, ruimtelijke principes, kansrijke functies, energieonderbouwing en aanbevelingen voor vervolgstappen.</p>
+</div>
+</div>
+<div class="bronnen-blok fade-in">
+<h3>Bron plan van aanpak</h3>
+<p>De aanleiding, doelstelling, randvoorwaarden, stakeholders en planning zijn gebaseerd op het plan van aanpak dat aan het begin van het project is opgesteld.</p>
+<details class="bron-item"><summary>Plan van aanpak Integrale gebiedsontwikkeling S-Park Deventer</summary><pre>Plan van aanpak Integrale gebiedsontwikkeling S-Park Deventer
+
+Kern uit de inleiding:
+Het project vindt plaats binnen de minor Ruimtemakers aan de HAN en gaat over de integrale gebiedsontwikkeling van S-Park Deventer in opdracht van Vitens. De aanleiding is dat bij de ontwikkeling van S-Park meerdere thema’s en belangen tegelijk spelen, zoals ruimtegebruik, bereikbaarheid, openbare ruimte, duurzaamheid en aansluiting op de omgeving. Zonder samenhangende afweging bestaat het risico dat oplossingen los van elkaar worden ontwikkeld en kansen onbenut blijven.
+
+Situatieschets en probleemstelling:
+Vitens is verantwoordelijk voor de drinkwatervoorziening van Deventer. Door een stijgende watervraag en beperkingen in de capaciteit moet Vitens een nieuwe productielocatie realiseren. S-Park is als voorkeurslocatie gekozen, direct naast de huidige locatie bij de Oude Gasfabriek. Het probleem is dat er nog geen gezamenlijk en gedragen beeld is van de gewenste invulling en waardecreatie van S-Park.
+
+Doelstelling:
+Het doel is om samen met Vitens, gemeente Deventer en stakeholders kansrijke mogelijkheden voor maatschappelijke waarde, functiecombinaties en innovaties in beeld te brengen. Het projectresultaat vormt input voor een gezamenlijke value case.
+
+Randvoorwaarden:
+- veiligheidszones rond productieonderdelen;
+- gebruik van bestaande infrastructuur waar mogelijk;
+- draagvlak bij stakeholders en heldere rolverdeling;
+- realistische kosten en fasering;
+- bijdrage aan maatschappelijke waarde;
+- voldoen aan Vitens-standaarden.
+
+Planning:
+27 februari: plan van aanpak en presentatie.
+6 maart: presentatie plan van aanpak.
+20 maart: werksessie Saxion en interview gemeente Deventer.
+27 maart: bezoek bezoekerscentrum Vitens Zwolle.
+17 april: creatieve cross-over met Vitens.
+5 juni: Battle of concepts met Vitens.
+19 juni: afronden project.
+26 juni: Ruimtemakers festival.</pre></details>
+</div>
+</section><section class="section" id="aanpak"><div class="section-header fade-in"><span class="section-number">2</span><h2 class="section-title">Onderzoeksstrategie</h2><p class="section-subtitle">Van opgave en stakeholderinput naar cross-over, scenario planning en waardecreatie</p></div><div class="onderbouwing-blok fade-in" style="max-width:1200px;"><span class="onderbouwing-label">Strategie</span><h3>Hoe is de onderzoeksaanpak ontstaan?</h3><p>De aanpak is stap voor stap opgebouwd. In het begin lag de focus op het begrijpen van de opgave, het ophalen van stakeholderbelangen en het verkennen van mogelijke kansen voor S-Park. Scenario planning was niet het vertrekpunt van het onderzoek. Scenario planning is later gekozen omdat uit de stakeholdergesprekken en vooral uit de creatieve cross-over veel verschillende wensen, kansen en risico’s naar voren kwamen.</p><p>De creatieve cross-over maakte duidelijk dat er meerdere richtingen mogelijk zijn en dat sommige belangen elkaar versterken, terwijl andere belangen juist spanning geven. Denk aan openbaarheid tegenover drinkwaterveiligheid, of gebiedsontwikkeling tegenover beheerbaarheid. Daarom is scenario planning gebruikt om deze brede input te ordenen en verschillende ontwikkelrichtingen naast elkaar te verkennen.</p></div><div class="roadmap"><div class="roadmap-item fade-in"><div class="roadmap-number">1</div><div class="roadmap-content"><h4>Behoefte en opgave bepalen</h4><p>Via het plan van aanpak zijn aanleiding, probleemstelling, doelstelling, randvoorwaarden en stakeholders vastgelegd.</p></div></div><div class="roadmap-item fade-in"><div class="roadmap-number">2</div><div class="roadmap-content"><h4>Stakeholderinput ophalen</h4><p>Gesprekken met Vitens, gemeente, Gasfabriek/1618, Saxion en waterschap maakten belangen, kansen en risico’s zichtbaar.</p></div></div><div class="roadmap-item fade-in"><div class="roadmap-number">3</div><div class="roadmap-content"><h4>Creatieve cross-over</h4><p>In een gezamenlijke sessie zijn wensen, kansen en risico’s opgehaald over water, energie, natuur, educatie, recreatie en samenwerking. Deze stap vormde later de aanleiding om met scenario’s te gaan werken.</p></div></div><div class="roadmap-item fade-in"><div class="roadmap-number">4</div><div class="roadmap-content"><h4>Scenario planning als vervolgstap</h4><p>Na de creatieve cross-over is gekozen voor scenario planning, omdat de opgehaalde wensen, kansen en risico’s te breed waren om direct naar één ambitierichting te vertalen.</p></div></div><div class="roadmap-item fade-in"><div class="roadmap-number">5</div><div class="roadmap-content"><h4>Toetsing en waardecreatie</h4><p>Via de Battle of concepts, het Flourishing Business Canvas en technisch onderzoek zijn de scenario’s aangescherpt.</p></div></div></div></section><section class="section" id="achtergrond">
+<div class="section-header fade-in">
+<span class="section-number">3</span>
+<h2 class="section-title">Achtergrond en stakeholderbelangen</h2>
+<p class="section-subtitle">Welke belangen, randvoorwaarden en spanningen bepalen de verkenning?</p>
+</div>
+<div class="onderbouwing-blok fade-in" style="max-width:1200px;"><span class="onderbouwing-label">Achtergrondinformatie</span><h3>Waarom stakeholderbelangen centraal staan</h3><p>De nieuwe productielocatie raakt meerdere belangen tegelijk. Vitens kijkt primair naar veilige en betrouwbare drinkwaterproductie. De gemeente kijkt naar ruimtelijke kwaliteit, openbaarheid en verbinding met de stad. Gebiedspartners kijken naar innovatie, energie en levendigheid. Het waterschap kijkt naar dijkveiligheid, waterkwaliteit en lozing. Deze belangen vormen de basis voor de scenario’s en aanbevelingen.</p></div><div class="parties-grid">
+<div class="party-card vitens fade-in">
+<div class="party-header">
+<div class="party-logo">V</div>
+<span class="party-name">Vitens</span>
+</div>
+<ul class="party-wishes">
+<li>Veilige afgesloten productiezone</li>
+<li>Minimale verstoring van productie</li>
+<li>Geen risico's over bodem en sanering</li>
+<li>Een praktische en beheersbare inrichting</li>
+</ul>
+</div>
+<div class="party-card gemeenten fade-in">
+<div class="party-header">
+<div class="party-logo">G</div>
+<span class="party-name">Gemeente Deventer</span>
+</div>
+<ul class="party-wishes">
+<li>Integrale gebiedsontwikkeling</li>
+<li>Landschapsinrichting en groenverbindingen</li>
+<li>Verhaal van het gebied en stadspoort</li>
+</ul>
+</div>
+<div class="party-card partners fade-in">
+<div class="party-header">
+<div class="party-logo">1618</div>
+<span class="party-name">1618 Vastgoed &amp; Gasfabriek</span>
+</div>
+<ul class="party-wishes">
+<li>Hekwerk en veiligheid</li>
+<li>Zichtbaarheid (glas)</li>
+<li>Koppeling aan warmtenet</li>
+<li>Samenwerking rond innovatie</li>
+</ul>
+</div>
+<div class="party-card onderwijs fade-in">
+<div class="party-header">
+<div class="party-logo">S</div>
+<span class="party-name">Saxion</span>
+</div>
+<ul class="party-wishes">
+<li>Leeromgeving en praktijkopstellingen</li>
+<li>Onderzoek en kennisdeling</li>
+<li>Koppeling met gebied als onderwijsplek</li>
+<li>Innovatie hotspot</li>
+</ul>
+</div>
+
+<div class="party-card waterschap fade-in">
+<div class="party-header">
+<div class="party-logo">W</div>
+<span class="party-name">Waterschap</span>
+</div>
+<ul class="party-wishes">
+<li>Dijkveiligheid en waterbelang vroeg meenemen</li>
+<li>Geen extra risico voor dijk en omgeving</li>
+<li>Regenwater opvangen, infiltreren en hergebruiken</li>
+<li>Lozing alleen schoon, zorgvuldig en goed onderbouwd</li>
+</ul>
+</div>
+<div class="bronnen-blok fade-in">
+<h3>Bronnen en gespreksverslagen</h3>
+<p>Voor meer onderbouwing zijn hieronder de volledige gespreksverslagen per stakeholder opgenomen. Klik op een stakeholder om het verslag te openen.</p>
+<details class="bron-item">
+<summary>Vitens</summary>
+<pre>Gespreksverslag Meet &amp; Greet Vitens
+Datum: 6 februari 2026
+Locatie: Vitens, Deventer
+Aanwezig: Vertegenwoordigers Vitens (Joost, Mark, Jessica en Daniel), studenten Minor Ruimtemakers en docentbegeleider Hans Oude Avenhuis
+
+Algemene informatie Vitens
+Vitens is een publieke organisatie en het grootste drinkwaterbedrijf van Nederland. Klanten kunnen niet kiezen voor een andere leverancier; Vitens heeft een monopoliepositie binnen haar verzorgingsgebied (o.a. Overijssel, Gelderland, Utrecht, Flevoland en Friesland).
+
+De hoofdtaak van Vitens is het winnen, zuiveren en leveren van drinkwater. Dit gebeurt via 105 waterwingebieden en 93 productielocaties. In totaal ligt er ongeveer 50.000 km aan leidingen in de grond.
+
+Vitens streeft ernaar om drinkwater zo dicht mogelijk bij de afnemer te winnen en te produceren. Dit beperkt transport, verlaagt energiekosten en is duurzamer.
+
+Aanleiding project S-Park
+De huidige productielocatie in Deventer moet worden verplaatst. Dit is geen uitbreiding, maar een volledige verhuizing. De huidige locatie blijft in gebruik totdat de nieuwe locatie operationeel is, vanwege leveringszekerheid.
+
+Vitens is al ongeveer twee jaar in gesprek met de Gemeente Deventer, de Gasfabriek en HMO over een nieuwe locatie op S-Park, aan de overkant van de Zutphenseweg. De voorkeurslocatie ligt nabij de IJssel.
+
+De Gasfabriek wil het gebied ontwikkelen tot een levendige plek met kantoren, innovatie, evenementen en bedrijvigheid. Vitens kan onderdeel worden van deze gebiedsontwikkeling.
+
+Doel van de opdracht
+De gemeente heeft Vitens gevraagd om verder te kijken dan alleen een technische nieuwbouwlocatie. De opdracht is om te onderzoeken hoe de nieuwe productielocatie gecombineerd kan worden met andere functies die maatschappelijke waarde toevoegen.
+
+De studenten werken toe naar een bidbook of kansenboek, ook wel een Value Case, waarin wordt uitgewerkt:
+- mogelijke functiecombinaties
+- kosten, baten en risico’s
+- maatschappelijke waarde per stakeholder
+- globale inrichting van het terrein
+- mogelijke samenwerkingen
+- denk aan natuur
+
+Het gaat om een value case: niet alleen financiële haalbaarheid, maar ook maatschappelijke meerwaarde.
+
+Mogelijke functiecombinaties
+Drinkwater – omgeving
+- Bezoekerscentrum
+- Meer transparantie over drinkwaterproductie
+
+Drinkwater – energie
+- Aquathermie, warmte/koude uit drinkwater
+- Levering van ultra-puur water voor waterstofproductie
+
+Drinkwater – educatie
+- Innovatie- en educatiehub
+- Samenwerking met Saxion
+- Mogelijke multifunctionele ruimte voor onderwijs, gastlessen of labs
+
+Daarnaast werd aangegeven dat studenten ook out of the box mogen denken en nieuwe koppelkansen mogen onderzoeken.
+
+Randvoorwaarden en aandachtspunten
+- De gedeelde informatie is vertrouwelijk; besluitvorming over grond en aankoop loopt nog.
+- Veiligheid en beveiliging zijn belangrijk bij een productielocatie.
+- Niet alle delen van het terrein kunnen openbaar toegankelijk zijn.
+- Studenten worden verwacht zelf informatie op te halen via interviews met stakeholders.
+- Vitens levert relevante documenten en protocollen aan.
+
+Conclusie
+Vitens ziet deze ontwikkeling als een kans om verder te kijken dan standaard nieuwbouw. De nieuwe locatie moet niet alleen functioneel zijn, maar ook bijdragen aan duurzaamheid, innovatie en maatschappelijke waarde. De studenten krijgen ruimte om hier creatief en onderbouwd invulling aan te geven.</pre>
+</details>
+<details class="bron-item">
+<summary>Gemeente Deventer</summary>
+<pre>Gespreksverslag Gemeente Deventer met Jan Pieter Romijn en Jurgen Schoorlemmer
+Informatie die verstrekt is, is vertrouwelijk.
+
+We zijn begonnen met een voorstelronde en hebben daarna de context van het project uitgelegd aan de Gemeente. Vanuit hier hebben we een aantal van onze voorbereide vragen kunnen stellen.
+
+1. Hoe ziet de gemeente de toekomstige ontwikkeling van dit gebied en de rol van een productielocatie van Vitens in de komende 10-20 jaar?
+De gemeente ziet de urgentie van de vraag en ze hebben een positieve houding. Alleen de vraag is nu hoe? Er mist bebouwing wat Deventer maakt bij de poort van Deventer. Braakliggend terrein wordt een distributiecentrum. Er moeten groene verbindingen vanaf de Zutphenseweg naar de IJssel komen. Ook moet het aantrekkelijk zijn voor fietsers of wandelaars om door het nieuwe gebied te fietsen of lopen. Het aanhouden van een innovatief milieu is van belang bij de nieuwe productielocatie van Vitens.
+
+2. Welke kansen en risico's ziet de gemeente in deze ontwikkeling?
+Kansen: Warmte van drinkwater Vitens interessant voor de gemeente, water komt nu vaak te warm aan bij de klant. Aquathermie is een kans. Ze willen de verkeersintensiteit verminderen aan de Zutphenseweg. Ambitie is er om een fietsroute te maken op de dijk, dit moeten wij meenemen in ons plan. Vastgoedbedrijf 1618 bewaakt het innovatieve profiel.
+
+Risico's: Belangrijk is dat het open wordt, geen hekken, of niet alleen industrie. Oppassen voor tegenstrijdige belangen. Daarnaast is de beschikbaarheid van energie de komende 15 jaar een uitdaging. Warmte is belangrijk.
+
+De gemeente is aanjager, ontwikkelaar en bewakend op de omgevingsvisie. In de energie zijn ze regisserend.
+
+3. Zijn er vergelijkbare projecten die inspiratie bieden?
+Vergelijkbare projecten: Brabant Water, JLG Architects en Canal Café - Diller Scofidio + Renfro.
+
+4. Wat zijn succesfactoren en valkuilen bij participatietrajecten?
+Waar stopt de gemeente met het maken van een visie en waar geven ze de ruimte aan ontwikkelaars. Valkuil is dat er te veel gedaan wil worden.
+
+5. Welke succesfactoren en veelvoorkomende problemen ziet de gemeente bij vergelijkbare gebiedsontwikkelingen?
+Kinderopvang is niet mogelijk, kan niet bij industrie. Ruimte voor festivals en evenementen. Een soort hub voor vrachtwagens waar ze samenkomen en spullen afleveren. Dan hoeven grote voertuigen niet het centrum in en kunnen spullen vanuit daar door kleinere elektrische voertuigen door de stad verdeeld worden.
+
+6. In hoeverre stimuleert de gemeente combinaties van infrastructuur met publieke functies?
+Dubbel ruimtegebruik en combinatie bewijzen dat de nieuwste innovaties van water en energie aanwezig zijn. Testlocaties voor onderzoekers. Thema water breed oppakken voor bezoekers, dus geschiedenis, toekomst etc. VNO NCW is interessant voor netcongestie.</pre>
+</details>
+<details class="bron-item">
+<summary>1618 Vastgoed / Gasfabriek</summary>
+<pre>Verslag – Interview Gasfabriek, 1618 Vastgoed, Vitens &amp; Essent
+
+1618 Vastgoed ontwikkelt het S/park-terrein verder en ziet de Gasfabriek als een belangrijk initiatief binnen dit gebied. Het vastgoed en de percelen zijn in eigendom of worden aangekocht door 1618. HMO is de verkoper, terwijl de gemeente juridisch eigenaar is van het terrein. 1618 werkt nauw samen met de ontwikkelaars van de startups op het terrein.
+
+Vitens en de aankoop van het terrein
+Vitens krijgt de kans om een deel van het terrein te kopen, maar dit is gekoppeld aan innovatie-eisen:
+- Vitens moet bijdragen aan educatie, bijvoorbeeld een productielocatie met glaswanden zodat bezoekers zien wat er gebeurt.
+- Vitens moet bijdragen aan dubbelgebruik, zoals parkeerplaatsen bovenop een waterreservoir.
+- Voorwaarde is dat Vitens meewerkt aan het warmtenet en iets toevoegt aan de campusfunctionaliteit.
+
+Essent en waterstofproductie
+Essent heeft interesse in de bunker naast het toekomstige Vitens-terrein. Plannen:
+- Productie van waterstof op basis van het kraken van ammoniak.
+- Waterstof voor de industrie, vervanging van regulier gas en verduurzaming.
+- Mogelijke koppeling aan warmtenetten voor verwarmen en koelen.
+- Belangrijk: gebruik van een vierpijpssysteem op het terrein.
+
+Voor 1618 is samenwerking tussen Vitens, Essent en de gemeente rond waterstof en warmtenetten een kernpunt binnen de innovatiezone.
+
+Opleveringen
+- Bovenzijde terrein: halverwege 2026
+- Onderzijde terrein, inclusief deel Vitens: eind 2026
+
+Vervuilde grond
+Er is sprake van vervuilde grond.
+- 1618 is in de veronderstelling dat Vitens dit zou saneren.
+- Vitens geeft aan dat zij zoveel mogelijk afstand willen houden van de sanering. Dit vormt een belangrijk punt rond verwachtingsmanagement en kan invloed hebben op de verkoopafspraken.
+
+Nieuwe bezoekerslocatie Vitens
+De Gasfabriek ziet kansen voor Vitens om een nieuwe bezoekersplek te maken, zolang dit:
+- niet stoort met de overige functies op het terrein
+- past bij de uitstraling en activiteiten van de Gasfabriek
+
+Kansen rond aquathermie
+Als Vitens gaat bouwen, wil de Gasfabriek dat:
+- de Gasfabriek wordt aangesloten op een warmtenet dat door Vitens wordt verwarmd
+- aquathermie als innovatiekans wordt onderzocht
+
+Kansen met waterstof
+Samenwerking tussen Essent, waterstofproductie via ammoniak, en Vitens, koppeling en ruimtegebruik, kan waardevol zijn. De bunkerlocatie biedt mogelijkheden voor integrale energie-innovatie.
+
+Toekomst oude Vitens-locatie Zutphenseweg
+De Gasfabriek vraagt wat Vitens wil met de oude productielocatie en of Vitens interesse heeft in ruimte op de nieuwe locatie, bijvoorbeeld als scale-up werklocatie vergelijkbaar met Loods 570. Volgens de Gasfabriek is het waarschijnlijk beter dat Gasunie die plek koopt.
+
+Do’s &amp; Don’ts voor bouw en terrein
+Do’s:
+- Verbinding met Saxion.
+- Aantrekkelijke architectuur, geen saai gebouw.
+- Goede aansluiting op de campus en het warmtenet.
+
+Don’ts:
+- Geen hekwerken of afgesloten terreinen.
+- Geen opslag van gevaarlijke stoffen.
+- Geen in zichzelf gekeerd bedrijf.
+- Geen negatieve impact op de uitstraling van het terrein.
+
+Eisen aan de nieuwe productielocatie van Vitens
+- De functies mogen het terrein niet negatief beïnvloeden, qua veiligheid, uitstraling en toegankelijkheid.
+Recreatie op de productielocatie zelf lijkt niet passend volgens de Gasfabriek.
+
+Visie op het Gasfabriek-terrein
+De Gasfabriek ziet een toekomst met:
+- maatschappelijke functies
+- samenwerking met onderwijs
+- flexplekken en gedeelde ruimten
+
+Een voorbeeld: flexlocaties in Vitens-eigendom, uitgebaat door een partner met een 25/75-regeling.
+
+Samenwerking en multifunctioneel gebruik
+Goed werkende combinaties ontstaan door:
+- transparantie
+- uitnodigende functies
+- toegankelijkheid
+- een mix van bedrijven, educatie en innovatie
+
+Een locatie wordt aantrekkelijk door:
+- levendigheid
+- diversiteit aan functies
+- openheid
+- duidelijke verbindingen met partners zoals Saxion, Essent en Vitens
+
+Relatie tussen de partijen
+- 1618: koper van het vastgoed, initiatiefnemer, ontwikkelaar en mogelijk afnemer van energie/warmte.
+- Gasfabriek: conceptdrager en programmatische invulling.
+- HMO: verkoper.
+- Gemeente: juridisch eigenaar.
+- Essent: wil waterstofproductie realiseren op het terrein.
+- Vitens: mogelijke koper van een perceel, innovatiedrager, warmtenet, educatie en dubbelgebruik.</pre>
+</details>
+<details class="bron-item">
+<summary>Saxion</summary>
+<pre>Werksessie Egbert Stolk (Saxion) - Stedenbouw
+
+We begonnen met een voorstelronde en daarna hebben we het Plan van Aanpak gepresenteerd met de daarbij horende doelstelling en probleemstelling voor de verplaatsing van de productielocatie.
+
+Voor de rest hebben we een aantal documenten en presentaties van Egbert ontvangen, die staan bij het projectcanvas op YouLab. We hebben samen met Hans, Egbert, Abdul en Daan een stedenbouwkundig spel gespeeld waar we top-down samen een inrichting gingen maken van een niet bestaand gebied. Dit deden we met blokken. Hieruit is de presentatie gekomen.
+
+Sessie samengevat: plek is een ruimte met betekenis. Maak van een ruimte een plek. Ruimte is een plek zonder betekenis. Place making, Jane Jacobs.
+
+Belangrijk platform: Deventer Economisch Platform. Denken na over Deventer kenniscorridor, kennisas. Hoe kunnen wij hier aan bijdragen? We moeten naar een groter gebied kijken. Wat zijn invloeden van buiten S/Park? Kijk hierbij dus naar het schaal- en abstractieniveau. Voor de één is de bottom al de up, of andersom. Niet voor iedereen is het abstractieniveau hetzelfde. Kijken naar wat ze met elkaar gemeen hebben, the commons.
+
+Nouryon gaat op de schop. Op zoek naar een nieuwe visie van het Nouryon terrein.
+
+Donor gebouw is een nieuwe term. Ergens een gebouw vandaan halen en opnieuw opbouwen. Duurzaam en circulair.
+
+Low Carbon Urbanism is ook interessant omdat er ook in wordt gerekend.
+
+Zorg ervoor dat wij gewaagde ideeën voorleggen, zoals Vitens eerder ook al zei. We zijn studenten en kunnen dit nog maken. Bijvoorbeeld aantonen dat wonen in dit gebied kan en ook positief bijdraagt aan de veiligheid na werktijden.
+
+Waarom is het slootje zo klein? Het was eerst groter en is in 2008 dicht gegooid. Waarom? Opzoeken. Kan die niet weer groter? Verbinden.
+
+Vroeger was ons gebied een havengebied, neem dit mee in ons verhaal. Geschiedenis.
+
+Jan Gehl, leestip.</pre>
+</details>
+
+<details class="bron-item">
+<summary>Waterschap</summary>
+<pre>Interview vragen Tineke Koch, Waterschap Drents Overijssels Delta
+Datum: 14-4-26
+
+Vragen:
+1. Wat zijn de belangrijkste belangen van het waterschap bij soortgelijke ruimtelijke opgaven?
+2. Wat zijn echte valkuilen/risico's bij soortgelijke ruimtelijke opgaven?
+3. Kunnen er langs de dijk gebouwen of wegen gebouwd worden? Hoe dichtbij?
+4. Kan Vitens oppervlaktewater afnemen?
+5. Is er bij de nieuwe productielocatie een andere vergunning nodig voor de lozing van concentraat? Van 2,6 miljoen kuub naar 3,5.
+6. Wat zijn cruciale stakeholders die volgens het waterschap niet vergeten mogen worden?
+7. Hoe kunnen we het best rekening houden met water en het waterschap?
+8. Zijn er vergelijkbare projecten die je kent of waar het waterschap aan heeft meegewerkt?
+
+Gemeente wil een andere weg gaan vinden, want de weg die ze nu wilde mag niet van waterschap. Als er veel verharding bij komt, dan wil waterschap ook graag dat er regenwater wordt opgevangen. Wadi kan infiltreren, maar niet dieper dan een meter. Groene daken. Regenwater voor toilet gebruiken.
+
+KRW water, schoon, gezond en ecologisch in evenwicht, is bij de haven. Dus daar liever niet lozen. Dit is een pijnpunt.
+
+Ingreep minder dan een meter diep: geen negatieve invloed. Meer dan een meter diep wel, en dan moet er piping plaatsvinden en onderzoek gedaan worden. Dat moet aantonen dat het geen negatieve invloed heeft op de dijk.
+
+Vaak zijn er aanvragen binnen de sanering van de dijk. We willen dat het risico niet groter wordt. Risico is dat de dijk niet verslechtert en dat we last van elkaar krijgen als waterschap ook werkt aan de dijk.
+
+In 2035 krijgt Deventer dijkversterking.
+
+NMO als stakeholder betrekken? Zijn bezig met Natura 2000 langs de IJssel en ondersteunen educatie.
+
+Nieuwe vergunning voor het lozen. Strenger, is kritischer geworden.
+
+Geen idee of Vitens oppervlaktewater kan afnemen. Willen we dat wel? Vies water.
+
+Oppervlaktewater en dijkveiligheid zijn waterschap. Provincie is voor diep grondwater. Waterschap is voor provincie een adviseur. Systeem aanbrengen dat oppervlaktewater op peil blijft.
+
+Mail na het interview: lozing van spoelwater bij Vitens, Zutphenseweg.
+
+In de Wet milieubeheer, artikel 10.29a, is de voorkeursvolgorde voor het zich ontdoen van afvalwater:
+1. Voorkomen/beperken van het ontstaan van afvalwater.
+2. Voorkomen/beperken van verontreiniging van afvalwater.
+3. Afvalstromen gescheiden houden.
+4. Huishoudelijk afvalwater.
+5. Ander afvalwater dan huishoudelijk, na behandeling, opnieuw gebruiken.
+6. Ander afvalwater dan huishoudelijk, na behandeling, in het milieu brengen.
+7. Ander afvalwater dan huishoudelijk naar een rwzi afvoeren.
+
+Dus het lozen van het spoelwater van Vitens op de gemeentelijke riolering staat op de laatste plaats in de voorkeursvolgorde.
+
+Vervolgens zijn het bereiden van drinkwater voor de openbare drinkwatervoorziening en activiteiten die het bereiden ondersteunen als milieubelastende activiteiten aangewezen in het Bal, artikel 3.93.
+
+Er is geen vergunningplicht voor de hoofdactiviteit, wel voor het lozen van vrijkomend afvalwater op een oppervlaktewater, artikel 3.94.
+
+Er zijn geen algemene regels voor het lozen van dit afvalwater. Daarom geldt de specifieke zorgplicht, vastgelegd in het Bal, artikel 2.11, omgevingsplan Deventer artikel 22.44 en de waterschapverordening artikel 1.16.
+
+Belangrijk hierin zijn:
+- Nadelige effecten op het milieu, via welke lozingsroute dan ook, worden voorkomen dan wel zoveel mogelijk beperkt.
+- Alle passende maatregelen tegen milieuverontreiniging worden getroffen.
+- Beste Beschikbare Technieken, BBT, wordt toegepast.
+
+Er worden in de praktijk technieken toegepast waarmee haalbaar en betaalbaar de kwaliteit en eventueel de omvang van het spoelwater zodanig kan worden verbeterd dat lozing op het oppervlaktewater mogelijk is. Als Vitens hiervan wil afwijken, zal goed onderbouwd moeten worden waarom dit noodzakelijk is. Dus niet onmogelijk, maar ook niet eerste uitgangspunt.
+
+De meest gebruikelijke route is volgens mij het lozen via een zuiveringstechnische voorziening, bezinktank/vijver o.i.d., op het oppervlaktewater.</pre>
+</details>
+</div>
+</div>
+</section><section class="section" id="crossover"><div class="section-header fade-in"><span class="section-number">4</span><h2 class="section-title">Creatieve cross-over</h2><p class="section-subtitle">De stap waarin wensen, kansen en risico’s gezamenlijk zichtbaar zijn gemaakt</p></div><div class="onderbouwing-blok fade-in" style="max-width:1200px;"><span class="onderbouwing-label">Onderzoeksstap</span><h3>Waarom kwam deze stap vóór scenario planning?</h3><p>Na de stakeholdergesprekken was duidelijk dat er verschillende belangen en onzekerheden naast elkaar bestaan. Vitens vraagt om veiligheid en bedrijfszekerheid, terwijl de gemeente en gebiedspartners kansen zien voor openbaarheid, educatie, energie, natuur en ontmoeting.</p><p>De creatieve cross-over is gebruikt om deze verschillende wensen, zorgen en kansen samen met stakeholders te verkennen. Uit deze sessie kwamen thema’s naar voren zoals water als verbindend element, de relatie met de IJssel, educatie, recreatie, innovatie, samenwerking en de spanning tussen toegankelijkheid en veiligheid.</p><p>De keuze voor scenario planning is dus uit deze cross-over voortgekomen. De groep was vooraf niet gestart met het idee om vier scenario’s te maken. Pas toen duidelijk werd dat de sessie veel verschillende en soms tegenstrijdige wensen, kansen en risico’s opleverde, is scenario planning gekozen als manier om de input zorgvuldig te ordenen.</p></div><div class="placeholder-grid-2 fade-in"><div class="placeholder-card"><img alt="Foto creatieve cross-over" src="fotos/cr.jpg" style="width:100%; height:280px; object-fit:cover; border-radius:16px;"/><p>Afbeelding 1: impressie van de creatieve cross-over.</p></div><div class="placeholder-card"><img alt="Foto creatieve cross-over" src="fotos/cre.jpg" style="width:100%; height:280px; object-fit:cover; border-radius:16px;"/><p>Afbeelding 2: ideevorming tijdens de creatieve cross-over.</p></div><div class="placeholder-card"><img alt="Foto creatieve cross-over" src="fotos/crea.jpg" style="width:100%; height:280px; object-fit:cover; border-radius:16px;"/><p>Afbeelding 3: schetsfase tijdens de creatieve cross-over.</p></div><div class="placeholder-card"><img alt="Foto creatieve cross-over" src="fotos/creat.jpg" style="width:100%; height:280px; object-fit:cover; border-radius:16px;"/><p>Afbeelding 4: presentatie van inzichten tijdens de creatieve cross-over.</p></div></div><div class="bronnen-blok fade-in">
+<h3>Bron creatieve cross-over</h3>
+<p>Voor meer informatie over de opzet, resultaten en reflectie van de sessie, bekijk het volledige verslag hieronder.</p>
+<details class="bron-item"><summary>Creative Crossover – Vitens S-Park</summary><pre>Creative Crossover – Vitens S-Park
+Van idee naar gezamenlijke visie
+17 april 2026
+
+Tijdens deze Creative Crossover kwamen studenten van HAN en stakeholders samen om na te denken over de toekomst van de nieuwe Vitens-locatie in het S-Park in Deventer.
+
+Het doel van deze middag was om ideeën uit te wisselen, verschillende perspectieven samen te brengen en gezamenlijk te verkennen hoe de locatie zich richting 2045 kan ontwikkelen.
+
+Aanwezige organisaties:
+- Vitens
+- Gemeente Deventer
+- Saxion
+- Gasfabriek / 1618 Vastgoed
+- Spacecowboys
+- HAN
+- TriMotion
+
+Start van de sessie
+De ochtend werd geopend door Joost, die namens het studententeam een korte introductie gaf. Na het voorstellen van het team (Joost, Daan, Abdul, Hira en Rabia), kregen ook de aanwezige stakeholders de gelegenheid om zich voor te stellen.
+
+Vervolgens werd de opdracht toegelicht: het ontwikkelen van een toekomstvisie voor de nieuwe Vitens-locatie binnen het S-Park. Om de groep actief te betrekken, werd gestart met een korte energizer. Deelnemers reageerden fysiek op stellingen, waarna kort werd besproken waarom zij een bepaalde keuze maakten.
+
+Ideevorming – toekomstbeeld 2045
+Onder begeleiding van Emmelie werd de groep verdeeld over drie tafels, waarbij aan elke tafel stakeholders en studenten samenwerkten. De eerste opdracht was individueel: hoe ziet deze locatie eruit in 2045? Iedere deelnemer schreef ideeën en associaties op. Deze ideeën werden op de muur verzameld en gezamenlijk besproken.
+
+Dit leverde inzichten op over educatie en bewustwording, recreatieve functies, innovatieve energieoplossingen en verbinding met de omgeving.
+
+Van idee naar ruimte, schetsfase
+Na de ideevorming gingen de groepen aan de slag met het vertalen van ideeën naar de ruimte. Per tafel werd gewerkt met kaarten van het gebied en een grote schets van de locatie. De opdracht was om gezamenlijk te visualiseren: wat komt waar en waarom?
+
+Tijdens deze fase ontstonden ideeën zoals wandelroutes langs het water, educatieve paden, uitkijkpunten, ontmoetingsplekken en watergerelateerde installaties.
+
+Presentatie en uitwisseling
+Na het schetsen werden de resultaten gepresenteerd aan de andere groepen en stakeholders. Elke groep lichtte toe welke keuzes zijn gemaakt, hoe functies gecombineerd worden en hoe de locatie waarde toevoegt. De studenten van de HAN hadden ook via AI gegenereerde schetsen voorbereid. Deze werden opgehangen en bekeken door de stakeholders.
+
+Belangrijke inzichten
+Water als verbindend element: water is niet alleen een functie, maar de basis van het gebied.
+
+Combinatie van functies: educatie, recreatie en innovatie versterken elkaar wanneer ze geïntegreerd worden.
+
+Toegankelijk maar veilig: de locatie moet beleefbaar zijn, zonder de drinkwaterproductie te verstoren.
+
+Samenwerking is essentieel: de ontwikkeling vraagt om samenwerking tussen verschillende partijen.
+
+Beleving en identiteit: de locatie moet een herkenbare plek worden binnen Deventer.
+
+Vertaling naar scenario planning en ambitierichting
+De inzichten uit de Creative Crossover vormden de aanleiding om de brede input te ordenen via scenario planning. Met name water als structurerend principe, de koppeling met de IJssel en de combinatie van educatie, innovatie en recreatie kwamen terug als belangrijke bouwstenen voor de latere ambitierichting.
+
+Wat betekent dit voor de ruimtelijke verkenning?
+- water zichtbaar maken in de inrichting
+- combinatie van functies verder uitwerken
+- buitenruimte actief inzetten
+- samenwerking verwerken in het concept
+
+Wat viel op tijdens de sessie?
+- stakeholders denken in combinaties, niet losse functies
+- sterke focus op samenwerking
+- veel aandacht voor beleving en identiteit
+
+Reflectie
+De Creative Crossover liet zien hoe waardevol het is om verschillende perspectieven samen te brengen. Door studenten en stakeholders actief te laten samenwerken, ontstonden niet alleen nieuwe ideeën, maar ook meer inzicht in elkaars belangen en mogelijkheden. De sessie gaf richting aan de verdere uitwerking van het onderwerp.</pre></details>
+</div></section><section class="section" id="scenario"><div class="section-header fade-in"><span class="section-number">5</span><h2 class="section-title">Scenario planning</h2><p class="section-subtitle">Van brede input uit de cross-over naar vier ontwikkelrichtingen</p></div><div class="onderbouwing-blok fade-in"><span class="onderbouwing-label">Toelichting</span><h3>Waarom is scenario planning toegepast?</h3><p>Scenario planning is toegepast omdat uit de stakeholdergesprekken en de creatieve cross-over veel verschillende wensen, kansen en risico’s naar voren kwamen. Sommige wensen versterken elkaar, zoals educatie, innovatie en zichtbaarheid. Andere punten staan juist op spanning met elkaar, zoals openbaarheid tegenover drinkwaterveiligheid, of gebiedsontwikkeling tegenover beheerbaarheid.</p><p>Om deze belangen niet te vroeg te versmallen tot één oplossing, is gekozen voor scenario planning. De methode helpt om onzekerheden en tegenstrijdige belangen te ordenen en om verschillende ontwikkelrichtingen naast elkaar te verkennen.</p><p>De input uit de cross-over is vertaald naar een assenstelsel met twee spanningsvelden. De verticale as maakt onderscheid tussen enkelvoudige waarde en meervoudige waarde. De horizontale as maakt onderscheid tussen een projectmatige benadering en een opgavegerichte benadering.</p><p>Door deze twee assen te kruisen ontstaan vier kwadranten. Elk kwadrant is uitgewerkt als scenario: Beschut water, Energiek water, Kabbelend water en Bruisend water. De scenario’s zijn geen eindontwerpen, maar onderzoeksmatige bouwstenen om de gezamenlijke ambitie scherper te maken.</p></div><div class="placeholder-card fade-in" style="max-width:1000px;margin:2rem auto 0;"><img alt="Assenstelsel scenario planning" src="fotos/assens.jpg" style="width:100%; height:auto; object-fit:contain; border-radius:16px;"/><p>Afbeelding: assenstelsel van de scenario planning.</p></div><div class="scenario-grid"><article class="scenario-card veilig fade-in">
+<span class="scenario-label">Productie &amp; bescherming</span>
+<h3>Beschut water</h3>
+<p>Hier staat drinkwaterproductie volledig centraal. Het terrein is gesloten, functioneel ingericht en gericht op bescherming tegen vervuiling, met heldere logistieke routes en minimale recreatieve toevoegingen.</p>
+<ul class="scenario-points">
+<li>Gesloten terrein met toegangscontrole en beveiliging</li>
+<li>Vrachtverkeer en proceslogistiek duidelijk georganiseerd</li>
+<li>Geen recreatie, wel zorgvuldige inpassing in de omgeving</li>
+<li>Bijna onzichtbare menging met het landschap</li>
+</ul>
+<div class="scenario-foot">Karakter: veilig, functioneel en onopvallend | Bron: scenarioverhaal Beschut water hieronder</div>
+</article><article class="scenario-card energiek fade-in">
+<span class="scenario-label">Samenwerking &amp; innovatie</span>
+<h3>Energiek water</h3>
+<p>Dit scenario zet stakeholders in hun kracht. Door samenwerking tussen Vitens, partners, onderwijs en omgeving ontstaat ruimte voor innovatie, kennisdeling en een nieuwe hotspot aan de poort van Deventer.</p>
+<ul class="scenario-points">
+<li>Innovatiehub en gezamenlijke programmering</li>
+<li>Energie winnen op meerdere vlakken</li>
+<li>Plek om kennis van vroeger, nu en later door te geven</li>
+<li>Recreatieve functies als onderdeel van het gebied</li>
+</ul>
+<div class="scenario-foot">Karakter: actief, verbindend en toekomstgericht | Bron: scenarioverhaal Energiek water hieronder</div>
+</article><article class="scenario-card kabbelend fade-in">
+<span class="scenario-label">Efficiënt &amp; beheerst</span>
+<h3>Kabbelend water</h3>
+<p>Een rustig en doelmatig scenario waarin duurzame processen centraal staan. Leven, werken en onderzoeken komen samen, maar rendement en beperkte toegang blijven leidend in de inrichting.</p>
+<ul class="scenario-points">
+<li>Korte wandelroute langs de rand van het terrein</li>
+<li>Compact informatiepunt of klein centrum</li>
+<li>Duidelijke scheiding tussen productie en omgeving</li>
+<li>Weinig kosten en slim hergebruik van bestaande structuren</li>
+</ul>
+<div class="scenario-foot">Karakter: sober, haalbaar en duurzaam | Bron: scenarioverhaal Kabbelend water hieronder</div>
+</article><article class="scenario-card bruisend fade-in">
+<span class="scenario-label">Levendig &amp; maatschappelijk</span>
+<h3>Bruisend water</h3>
+<p>Een open en levendig waterpark waarin spelen, leren, uitrusten en ontmoeten samenkomen. Het gebied krijgt hotspots, routes, educatie en ruimte voor samenwerking met de omgeving.</p>
+<ul class="scenario-points">
+<li>Watertappunten, waterspeeltuin en uitrustplekken</li>
+<li>Informatieborden, excursies en zicht op het waterproces</li>
+<li>Landmarks, kunst en uitzicht op de uiterwaarden</li>
+<li>Verbinding met events, festivals en omliggende initiatieven</li>
+</ul>
+<div class="scenario-foot">Karakter: open, speels en sociaal | Bron: scenarioverhaal Bruisend water hieronder</div>
+</article></div>
+<div class="bronnen-blok fade-in" id="scenario-bronnen">
+<h3>Bronnen scenarioverhalen</h3>
+<p>De vier scenario’s zijn onderbouwd met de aangeleverde scenarioverhalen. Hieronder staan de verhalen per scenario als bron opgenomen.</p>
+<details class="bron-item"><summary>Scenarioverhaal Beschut Water</summary><pre>Beschut Water
+Het Vitens beschut water scenario focust zich voornamelijk op het beschermen tegen vervuiling van het drinkwater. Vitens zorgt er echter niet alleen voor dat het water schoon is, maar ook dat er voldoende is en blijft voor de bewoners van Deventer. Terwijl dit veilige en gesloten proces loopt en de bewoners, zoals gewoonlijk, elke dag water uit de kraan krijgen, speelt er ook nog een belangrijke rol voor de schermen. Vrachtwagens met actief kool en slib rijden op en af over de veilige en duidelijke op- en aanrijroutes. Deze processen vormen ook de inrichting van het terrein en zorgen voor een functionele uitstraling die overgaat in het volgende. Vitens mengt tot slot haar productielocatie met de omgeving, waardoor de meeste niet eens door hebben dat er voor hun neus een eerste levensbehoefte wordt gewonnen.
+
+Beeldrichting:
+- Drinkwaterproductie staat centraal
+- Gesloten, met pasjesscanner en dubbele toegangsdeuren
+- Geen recreatie, alleen mengen in de omgeving</pre></details>
+<details class="bron-item"><summary>Scenarioverhaal Kabbelend Water</summary><pre>Kabbelend Water
+Het Vitens kabbelend water scenario geeft net zo veel terug als dat je erin stopt. Duurzame processen staan centraal en dat kan Vitens niet alleen. Samen met Essent winnen ze energie uit het grondwater en leveren ze dit aan de klant, door buizen die al in de grond lagen van de oude productielocatie. Door ruimtes en plekken met de Gasfabriek te combineren en delen is er voor alles en iedereen plek. Toch blijft winstgevendheid en rendement het belangrijkst, waardoor toegang tot de productielocatie beperkt blijft. Leven, werken en onderzoeken komen samen, waardoor er optimaal gebruik wordt gemaakt van materialen, kennis en natuurlijk water.
+
+Beeldrichting:
+- Korte wandelroute langs de rand van het terrein
+- Eventueel een klein centrum met informatie
+- Bankjes
+- Duidelijke scheiding tussen productie en omgeving
+- Weinig kosten</pre></details>
+<details class="bron-item"><summary>Scenarioverhaal Energiek Water</summary><pre>Energiek Water
+Het Vitens energiek water scenario zorgt ervoor dat stakeholders in hun krachten worden gezet. Door krachten te bundelen, kan eigenaarschap worden gecreëerd. Essent zorgt voor aquathermie, Spacecowboys geven de plek een betekenis, het waterschap, Saxion en Vitens geven kennis van vroeger, nu en later over het gebied door aan de volgende generaties. Door je op deze manier te verbinden met de structuren van buitenaf, stijgt het draagvlak bij de stakeholders en komt er ruimte en tijd vrij voor innovatie. Op een nieuwe, leuke en slimme manier kan de bebouwing aansluiten op de rest, de kennisas worden doorgetrokken, de uiterwaarde een verhaal krijgen, de poort van Deventer een nieuwe hotspot ontvangen en de Gasfabriek er een trouwe nieuwe partner bij tekenen.
+
+Beeldrichting:
+- Innovatiehub en samenwerkingen
+- Energiewinning op verschillende vlakken
+- Enkele recreatieve functies
+- Plek om kennis door te geven</pre></details>
+<details class="bron-item"><summary>Scenarioverhaal Bruisend Water</summary><pre>Bruisend Water
+Het Vitens bruisend water scenario is van alle markten thuis. Het houdt rekening met zichzelf, maar vooral met de samenleving. De maatschappelijke betrokkenheid staat hoog in het vaandel en het gebied voelt levend aan. Natuurlijk zijn de randvoorwaarden schoon, veilig en genoeg drinkwater meegenomen in dit scenario. Maar het bruisende water gaat er ook voor zorgen dat mensen een plek krijgen om te spelen, uitrusten of leren. Dit multifunctionele Waterpark wordt onderhouden door de gemeente. De geschiedenis, het heden en de toekomst van het drink- en IJsselwater worden door Vitens en het waterschap op een leerzame en speelse manier laten zien, zodat het water een verbindende rol kan spelen. Er is gedacht aan het unieke Natura 2000 uiterwaardegebied dat je door middel van een hooggelegen punt in het park kan bewonderen. Vanuit het park is de zogeheten Lablane te bereiken die het mogelijk maakt events en/of festivals te organiseren samen met andere bedrijven en initiatieven in de buurt. Het waterpark is letterlijk en figuurlijk een waterbuffer, waar hotspots en landmarks gecreëerd worden en eigenaarschap wordt verleend, zodat er een gezonde en innovatieve samenwerking plaatsvindt met haar hele samenwerkende omgeving.
+
+Beeldrichting:
+- Watertappunten
+- Waterspeeltuin en hotspots
+- Informatieborden over geschiedenis, toekomst en waterproces, plus excursies
+- Uitrustplekken
+- Open en gesloten uiterlijk als overgang
+- Samenwerking met de omgeving
+- Kunst en landmarks</pre></details>
+</div>
+
+</section><section class="ruimte-section" id="water">
+<div class="ruimte-container">
+<div class="section-header fade-in">
+<span class="section-number">6</span>
+<h2 class="section-title">Water: productie, veiligheid en beleving</h2>
+<p class="section-subtitle">Drinkwaterproductie als basis, met een zichtbare en veilige overgang naar het openbare gebied</p>
+</div>
+<div class="ruimte-visual fade-in">
+<div class="ruimte-bar">
+<div class="zone zone-production">
+<span class="zone-label">Productiezone</span>
+<span class="zone-desc">Afgesloten terrein met hekwerk en gecontroleerde toegang. Hier draait de drinkwaterproductie.</span>
+<div class="zone-features">
+<span class="feature-tag">Hekwerk</span>
+<span class="feature-tag">Toegangscontrole</span>
+<span class="feature-tag">Logistiek apart</span>
+</div>
+</div>
+<div class="zone zone-transition">
+<span class="zone-label">Overgangszone</span>
+<span class="zone-desc">Landschappelijke schil langs het hek met zicht en uitleg. Waterproces zichtbaar, geen toegang.</span>
+<div class="zone-features">
+<span class="feature-tag">Uitkijkpunt</span>
+<span class="feature-tag">Waterroute</span>
+<span class="feature-tag">Info punten</span>
+</div>
+</div>
+<div class="zone zone-public">
+<span class="zone-label">Openbaar Park &amp; Kenniszone</span>
+<span class="zone-desc">Openbaar groen, routes, verblijf, verbinding met Gasfabriek en stad.</span>
+<div class="zone-features">
+<span class="feature-tag">Wandelroutes</span>
+<span class="feature-tag">Verblijf</span>
+<span class="feature-tag">Groen</span>
+</div>
+</div>
+</div>
+</div>
+<div class="ruimte-legend fade-in">
+<div class="legend-item">
+<span class="legend-dot" style="background: var(--primary);"></span>
+<span>Productiezone - Beveiligd</span>
+</div>
+<div class="legend-item">
+<span class="legend-dot" style="background: var(--secondary);"></span>
+<span>Overgangszone - Zichtbaar</span>
+</div>
+<div class="legend-item">
+<span class="legend-dot" style="background: var(--success);"></span>
+<span>Openbaar - Toegankelijk</span>
+</div>
+</div>
+<div class="onderbouwing-blok fade-in"><span class="onderbouwing-label">Onderbouwing gebiedsontwikkeling</span><h3>Waarom werken we met drie zones?</h3><p>De ruimtelijke oplossing is ontstaan uit de verschillende belangen die in de stakeholdergesprekken en creatieve cross-over naar voren kwamen. Vitens vraagt om een veilige en goed beheersbare productielocatie. De gemeente kijkt juist naar toegankelijkheid, landschappelijke kwaliteit en meerwaarde voor het gebied. Ook andere partijen, zoals Saxion, de Gasfabriek, het waterschap, brengen eigen wensen en randvoorwaarden in.</p><p>Om deze belangen ruimtelijk te combineren is gekozen voor drie zones: een afgesloten productiezone, een overgangszone en een openbaar parkdeel. Deze driedeling maakt het mogelijk om veiligheid en openbaarheid niet tegenover elkaar te zetten, maar zorgvuldig naast elkaar te organiseren.</p><p>De productiezone borgt de primaire drinkwaterfunctie van Vitens. Het openbare parkdeel zorgt voor routes, groen, ontmoeting en educatie. De overgangszone vormt de verbinding tussen beide werelden. Hier wordt het waterverhaal zichtbaar via zichtlijnen, uitleg en kijkpunten, zonder dat vitale onderdelen van de drinkwaterproductie toegankelijk worden.</p></div>
+</div>
+<div class="onderbouwing-blok fade-in" style="max-width:1200px;"><span class="onderbouwing-label">Kansrijke functies</span><h3>Waarom functies zoals uitkijkpunt, waterroute en watertappunten logisch zijn</h3><p>Deze functies zijn geen definitieve ontwerpkeuzes, maar bouwstenen uit de verkenning. Ze maken het waterverhaal zichtbaar zonder dat de veiligheid van de drinkwaterproductie wordt aangetast. Daarmee verbinden ze de belangen van Vitens, gemeente, onderwijs en gebiedspartners.</p></div><div class="challenge-grid"><div class="challenge-card fade-in"><h3>Uitkijkpunt</h3><p style="color: var(--text-muted);">Maakt het waterproces zichtbaar vanaf een veilige afstand en geeft het gebied een herkenbaar punt aan de IJssel.</p></div><div class="challenge-card fade-in"><h3>Waterroute</h3><p style="color: var(--text-muted);">Verbindt de IJssel, het parkdeel en de informatiepunten en ondersteunt educatie over drinkwater.</p></div><div class="challenge-card fade-in"><h3>Watertappunten</h3><p style="color: var(--text-muted);">Maken drinkwater concreet en publiek beleefbaar, passend bij bewustwording en maatschappelijke waarde.</p></div><div class="challenge-card fade-in"><h3>Waterhub</h3><p style="color: var(--text-muted);">Combineert ontvangst, educatie, onderzoek en ontmoeting zonder publieke toegang tot vitale productieonderdelen.</p></div></div></section><section class="section" id="energie"><div class="section-header fade-in"><span class="section-number">7</span><h2 class="section-title">Energie en innovatie</h2><p class="section-subtitle">Aquathermie, waterstof en DC energy als kansen voor duurzame gebiedsontwikkeling</p></div><div class="onderbouwing-blok fade-in"><span class="onderbouwing-label">Onderbouwing techniek</span><h3>Duurzame kansen voor de productielocatie</h3><p>In opdracht van Vitens heeft een studententeam van de HAN onderzocht hoe de nieuwe waterproductielocatie op het Gasfabriekterrein in Deventer duurzaam en toekomstbestendig kan worden ingericht. Het onderzoek richt zich op drie innovatieve energiepijlers: aquathermie, waterstof en DC energy (gelijkstroom).</p><p>De grootste en meest direct toepasbare kans ligt bij aquathermie gecombineerd met warmte- en koudeopslag (WKO). Door slim gebruik te maken van de temperatuur van het water dat Vitens verwerkt, kan een aanzienlijke hoeveelheid duurzame energie worden opgewekt. Hiermee kan niet alleen de locatie zelf worden voorzien, maar ook een groot deel van de omgeving. Berekeningen laten zien dat er voldoende restwarmte beschikbaar is om circa 1.000 nieuwbouwwoningen in de omgeving van duurzame warmte te voorzien.</p><p>Daarnaast biedt waterstof een belangrijke strategische kans. Binnen het lokale GROHW-initiatief wordt gewerkt aan een waterstofhub, waarbij Vitens een sleutelrol kan spelen door ultra puur water te leveren voor de productie van waterstof. Tegelijkertijd kan de restwarmte die hierbij vrijkomt worden benut in het warmtenet. Deze samenwerking versterkt zowel de duurzame impact als de economische haalbaarheid van de locatie.</p><p>DC energy (gelijkstroom) bevindt zich nog in een experimentele fase, maar biedt kansen voor efficiënt energiegebruik. Kleine windturbines en lokale opslag kunnen bijdragen aan een slim energiesysteem op het terrein. Daarnaast kan Vitens hier een voortrekkersrol nemen in innovatie.</p><p>Een belangrijk onderdeel van het advies is daarom het opzetten van een Innovatielab, ook wel Living Lab, op de productielocatie. In dit lab kunnen studenten, onderzoekers en partners samenwerken aan nieuwe toepassingen, zoals efficiëntere DC-systemen en kleinschalige waterkracht. Dit maakt de locatie niet alleen een productieplek, maar ook een proeftuin voor duurzame energie-innovaties en kennisontwikkeling.</p><p>Het eindadvies luidt om aquathermie als prioriteit uit te rollen, een strategisch partnerschap rondom waterstof aan te gaan en DC energy en het innovatielab gefaseerd te ontwikkelen. Op deze manier kan Vitens een voortrekkersrol spelen in de energietransitie én de maatschappelijke waarde van de locatie vergroten.</p><p class="bronvermelding-klein">Voor de volledige technische onderbouwing, berekeningen, kansen, risico’s en vervolgstappen: zie de bron <strong>Onderzoeksrapport: Duurzame Kansen Productielocatie Vitens Deventer</strong> hieronder.</p></div><div class="placeholder-grid-2 fade-in"><div class="placeholder-card"><img alt="Technische verkenning aquathermie en WKO" src="fotos/t.jpg" style="width:100%; height:280px; object-fit:contain; border-radius:16px; background:white;"/><p>Afbeelding 1: technische verkenning van aquathermie en WKO.</p></div><div class="placeholder-card"><img alt="Energiesysteem met waterstof en DC energy" src="fotos/te.jpg" style="width:100%; height:280px; object-fit:contain; border-radius:16px; background:white;"/><p>Afbeelding 2: energiesysteem met waterstof, DC energy en innovatie.</p></div></div><div class="bronnen-blok fade-in"><h3>Bron techniek en energie</h3><p>Voor meer informatie over de technische en financiële haalbaarheid van aquathermie, waterstof en DC energy is hieronder het volledige onderzoeksrapport opgenomen.</p><details class="bron-item"><summary>Onderzoeksrapport: Duurzame Kansen Productielocatie Vitens Deventer</summary><pre>Onderzoeksrapport: Duurzame Kansen Productielocatie Vitens Deventer
+Technische en financiële haalbaarheid van Aquathermie, Waterstof en DC Energy op het Gasfabriekterrein
+In opdracht van: Vitens
+Datum: Juni 2026
+1. Inleiding &amp; Context
+Voor de minor Ruimtemakers van de HAN heeft een studententeam onderzoek gedaan naar de mogelijkheden voor een nieuwe waterproductielocatie in Deventer (specifiek het Gasfabriekterrein). Dit rapport focust op het technisch-duurzame vraagstuk. Het doel is om te onderzoeken hoe duurzame energiebronnen geïntegreerd kunnen worden om zo de maatschappelijke rol van Vitens te versterken én bij te dragen aan de financiële haalbaarheid van de locatie. De focus ligt hierbij op drie pijlers: Waterstof, Aquathermie en DC Energy (Gelijkstroom).
+2. Analyse van de Duurzame Kansen
+2.1 Waterstoftoepassingen (GROHW-initiatief)
+In Deventer ontwikkelt energieleverancier Essent een lokale waterstofhub onder het initiatief GROHW (Green Oxygen Hydrogen and Wasteheat). Binnen dit netwerk distribueert Firran de waterstof en past Bosch het toe (o.a. via de ontwikkeling van waterstofketels voor de gebouwde omgeving). Na een succesvolle technische pilot in 2023 bevindt het project zich in de fase van commerciële uitrol.
+De kans voor Vitens: Waterstofproductie vereist Ultra Puur Water (UPW) – water vrij van mineralen, zouten en organische stoffen. Dit sluit direct aan bij de corebusiness van Vitens. Door de fysieke nabijheid van de locaties op het terrein zijn de transportlijnen kort.
+Synergie: Bij waterstofproductie komt veel restwarmte vrij. Deze warmte kan direct worden ingezet om de capaciteit van het beoogde warmtenet van Vitens te vergroten.
+2.2 Aquathermie &amp; WKO
+Het dagelijks verwerken van grote hoeveelheden water biedt een enorme bron van thermische energie (warmte en koude). Syntraal heeft in opdracht van Vitens het potentieel op het Gasfabriekterrein onderzocht. Uit een quickscan (2025) op basis van de debietgegevens van 2024 (uitgaande van 70% winbaar vermogen) blijkt het volgende:
+Match met de omgeving: De warmtevraag van het Gasfabriekterrein zelf is circa 10.060 GJ (op basis van kengetallen van 1618 Vastgoed). Bij inzet van WKO blijft er 6.140 GJ restwarmte over. Aangezien een gemiddelde nieuwbouwwoning ca. 5,85 GJ/jaar verbruikt, kan Vitens hiermee de circa 1.000 geplande nieuwbouwwoningen rondom de Zutphenseweg van duurzame warmte voorzien.
+Locatie Ceintuurbaan: Ook hier ligt nog een potentieel van ca. 12.000 GJ/jaar i.c.m. WKO voor andere projecten.
+Uitdagingen: Bodem- en dieptebeperkingen voor WKO in Deventer, transportverliezen over afstand, en de exacte dimensionering van het warmtenet.
+2.3 DC Energy (Gelijkstroom)
+Veel industriële componenten (zoals sensoren) en huishoudelijke apparaten werken intern op gelijkstroom (DC). Het omzetten van wisselstroom (AC) naar DC zorgt voor circa 10% energieverlies. Het direct opwekken en distribueren van DC stroom is dus efficiënt, maar kent in de praktijk barrières.
+Onderzochte bronnen:
+Zon &amp; Wind: Zonnepanelen (enkel overdag) en kleine windturbines (bijv. Ecoways 15kW of hydraulisch kantelbare turbines van Hulst Windenergie).
+Waterkracht (Verval): Een generator plaatsen tussen het verval van opgepompt water dat van het hoogste punt in het gebouw naar beneden stort.
+Expert-inzicht (Voorstroom): Jeroen Bolhuis (Voorstroom) geeft aan dat DC-opwekking uit stromend water (zoals pilots met de Lintur-turbine in de IJssel of testcentra in Zeeland) momenteel in Nederland commercieel niet levensvatbaar is wegens te lage stroomsnelheden en hoge kosten.
+Concrete kans: Voorstroom onderzoekt momenteel een collectieve businesscase voor een 'Windwokkel' (10-15 kW) op het Gasfabriekterrein. Vitens kan deze windwokkels zelf aanschaffen, koppelen aan accupakketten, en fungeren als DC-leverancier voor het hele terrein. Daarnaast kan Vitens een 'innovatielab' inrichten waar studenten testopstellingen (bijv. rendabele waterkrachtturbines) kunnen onderzoeken.
+3. Strategisch Advies
+Aquathermie als prioriteit 1: Deze techniek is volwassen. Richt samen met Syntraal en de gemeente Deventer een warmtecollectief/BV op voor de exploitatie van restwarmte aan het lage-temperatuur-warmtenet. Neem contact op met Deltares (i.s.m. Stichting Warmup) om deze maatwerkcasuïstiek financieel door te rekenen.
+Waterstof als strategisch partnership: Start formele gesprekken met Essent (GROHW) voor de levering van Ultra Puur Water en de koppeling van hun industriële restwarmte aan het Vitens-warmtenet.
+DC Energy als innovatie/pilot: Zet niet direct groot in op waterkracht, maar participeer in de Windwokkel-case van Voorstroom. Richt op de productielocatie een 'Living Lab' in voor HAN-studenten om door te ontwikkelen op DC-toepassingen en kleinschalige waterkracht.
+4. Plan van Aanpak (PvA)
+Om de adviezen om te zetten in concrete daden, wordt het volgende faseringsplan voorgesteld:
+Fase 1: Validatie &amp; Detailonderzoek (Maand 1 - 3)
+Actie 1.1: Contact opnemen met Deltares en Syntraal om de exacte kosten/baten van de Aquathermie + WKO-opstelling door te rekenen (inclusief bodemrisico's Deventer).
+Actie 1.2: Deelname aan de lopende haalbaarheidscase van Voorstroom omtrent de Windwokkel op het Gasfabriekterrein.
+Actie 1.3: Kennis inkopen/verifiëren bij experts zoals KWR (watertransitie) en VEMW (verificatie van industriële energieplannen).
+Fase 2: Business Modeling &amp; Partnerships (Maand 4 - 6)
+Actie 2.1: Intentieovereenkomst (LOI) opstellen met Essent (GROHW) over de leveringsvoorwaarden van Ultra Puur Water en de terugname van restwarmte.
+Actie 2.2: Samen met de Gemeente Deventer en partijen zoals Transitiespijkers of Staqx de juridische en organisatorische structuur van een lokaal warmtenet (bijv. een Energie-BV) uitwerken voor de 1.000 geplande woningen.
+Fase 3: Technisch Ontwerp &amp; Pilots (Maand 7 - 12)
+Actie 3.1: Technisch ontwerp (VO/DO) van de nieuwe productielocatie inclusief de fysieke integratie van de WKO, de windwokkels met accupakketten (DC-grid door Staqx), en de UPW-installatie.
+Actie 3.2: Inrichten van het 'Vitens Innovatielab' op de locatie, in samenwerking met de HAN, voor studentenonderzoek naar het waterverval-rendement en IJssel-turbines.
+5. Bronnen
+Deltares (Expertise kosten aquathermiesystemen)
+Ecoways &amp; Hulst Windenergie (Specificaties kleine windturbines)
+Thuisenergiecoach (Rendementen AC/DC koppelingen)
+Syntraal &amp; 1618 Vastgoed (Quickscan &amp; Kengetallen Gasfabriekterrein)
+Voorstroom (J. Bolhuis - Expertinput DC Energy)
+Scenario | Beschikbaar thermisch vermogen per jaar
+Zonder Warmte- en Koudeopslag (WKO) | ~ 3.700 GJ
+Met Warmte- en Koudeopslag (WKO) | ~ 16.200 GJ</pre></details></div></section><section class="section" id="natuur"><div class="section-header fade-in"><span class="section-number">8</span><h2 class="section-title">Natuur en landschap</h2><p class="section-subtitle">Groen, waterveiligheid en landschappelijke kwaliteit als randvoorwaarden voor de ontwikkeling</p></div><div class="onderbouwing-blok fade-in" style="max-width:1200px;"><span class="onderbouwing-label">Gebiedskwaliteit</span><h3>Waarom natuur een zelfstandig thema is</h3><p>De ontwikkeling van S-Park ligt in een gebied waar de IJssel, dijkveiligheid, groenstructuren en openbare routes een belangrijke rol spelen. Uit de gesprekken met gemeente, waterschap en gebiedspartners blijkt dat de locatie niet alleen technisch moet functioneren, maar ook zorgvuldig moet aansluiten op landschap, waterveiligheid en ecologische kwaliteit.</p><p>Natuur en landschap zijn daarom geen decor rond de productielocatie, maar onderdeel van de gebiedswaarde. Denk aan regenwateropvang, groene daken, landschappelijke overgangszones, wandelroutes, biodiversiteit en het zorgvuldig omgaan met lozing en dijkveiligheid.</p></div><div class="challenge-grid"><div class="challenge-card fade-in"><h3>Dijkveiligheid</h3><p style="color: var(--text-muted);">Bouwen en graven nabij de dijk vraagt vroegtijdige afstemming met het waterschap en onderbouwing dat risico’s niet toenemen.</p></div><div class="challenge-card fade-in"><h3>Groen en biodiversiteit</h3><p style="color: var(--text-muted);">Groene inrichting, landschappelijke randen en vergroening van de IJsseloever versterken de ruimtelijke kwaliteit.</p></div><div class="challenge-card fade-in"><h3>Water vasthouden</h3><p style="color: var(--text-muted);">Regenwater kan worden opgevangen, geïnfiltreerd of hergebruikt, bijvoorbeeld via wadi’s, groene daken en hergebruik voor toiletspoeling.</p></div><div class="challenge-card fade-in"><h3>Openbare routes</h3><p style="color: var(--text-muted);">Wandel- en fietsroutes kunnen het gebied verbinden met de IJssel, zonder de productieveiligheid te verstoren.</p></div></div></section><section class="section" id="waarde"><div class="section-header fade-in"><span class="section-number">9</span><h2 class="section-title">Maatschappelijke waardecreatie</h2><p class="section-subtitle">Het Flourishing Business Canvas als methode om sociale, ecologische en economische waarde zichtbaar te maken</p></div><div class="onderbouwing-blok fade-in" style="max-width:1200px;"><span class="onderbouwing-label">Onderbouwing</span><h3>Waarom is het Flourishing Business Canvas gebruikt?</h3><p>Het Flourishing Business Canvas is een model waarmee niet alleen economische waarde, maar ook sociale en ecologische waarde wordt onderzocht. Binnen dit project is het canvas gebruikt om de maatschappelijke meerwaarde van de nieuwe drinkwaterproductielocatie van Vitens inzichtelijk te maken.</p><h3>Hoe hebben we het ingezet?</h3><p>Wij hebben het canvas gebruikt om de opgehaalde informatie te analyseren en te vertalen naar vormen van waardecreatie. De scenario’s, stakeholderbelangen en kansen voor het gebied zijn vertaald naar activiteiten, betrokken partijen, waardecreatie, baten en aandachtspunten.</p><h3>Hoe is de inhoud ontstaan?</h3><p>De inhoud is ontstaan uit stakeholdergesprekken, locatiebezoeken, literatuuronderzoek, de eerste creatieve cross-over en de Battle of concepts. Tijdens de Battle of concepts zijn de scenario’s via een swipe-app getoetst bij stakeholders. De resultaten daarvan zijn gebruikt om het canvas verder aan te scherpen.</p><h3>Rol van de Battle of concepts</h3><p>De Battle of concepts werkte als tweede creatieve cross-over. Stakeholders gaven via de swipe-app aan welke scenario’s kansrijk waren en welke punten nog aandacht vroegen. De volledige resultaten staan onder de bronnen, zodat de onderbouwing controleerbaar blijft zonder de hoofdtekst te lang te maken.</p>
+<h3>Samenvatting en conclusie swipe-app</h3>
+<p>Tijdens de tweede cross-over sessie zijn de vier toekomstscenario’s beoordeeld door stakeholders. Uit de resultaten blijkt dat vooral Energiek Water en Bruisend Water goed aansluiten bij de wensen voor de integrale gebiedsontwikkeling. Energiek Water werd het hoogst gewaardeerd door de kansen voor energieopwekking, samenwerking, kennisdeling, eigenaarschap en innovatie. Bruisend Water werd ook positief beoordeeld door de combinatie van ontmoeting, recreatie, educatie en een levendige openbare ruimte.</p>
+<p>De conclusie is dat Beschut Water als basis en rode draad moet blijven gelden, omdat veiligheid en drinkwaterproductie altijd eerst geborgd moeten zijn. Tegelijk ligt de meeste ontwikkelkracht in een combinatie van Energiek Water en Bruisend Water, aangevuld met de haalbaarheid en nuchterheid van Kabbelend Water. De belangrijkste richting is daarom een dynamisch, innovatief en groen terrein waar kennisdeling, natuur, recreatie en duurzame industrie elkaar versterken. Bron: <strong>Battle of Concepts - resultaten swipe-app 2de cross-over</strong>, opgenomen onder de bronnen.</p>
+</div><div class="placeholder-card fade-in" style="max-width:1200px;margin:2rem auto 0;"><img alt="Flourishing Business Canvas Vitens" src="fotos/canvas.jpg" style="width:100%; height:auto; object-fit:contain; border-radius:16px;"/><p>Afbeelding: Flourishing Business Canvas als overzicht van meervoudige waardecreatie.</p></div><div class="bronnen-blok fade-in">
+<h3>Bron Maatschappelijke waardecreatie</h3>
+<p>Voor meer informatie over de totstandkoming van het Flourishing Business Canvas, de meervoudige waardecreatie en de resultaten van de Battle of concepts, bekijk de volledige bronbestanden hieronder.</p>
+<details class="bron-item"><summary>Flourishing Business Canvas Vitens 2026</summary><pre>HAN2026 juni 19 Namen: Hira Çadir &amp; Rabia Yilmaz
+
+2
+PROJECTVISIE
+Binnen dit project wordt onderzocht hoe de nieuwe drinkwaterproductielocatie van Vitens kan
+uitgroeien tot een plek waar productie, educatie, recreatie en innovatie samenkomen.
+Daarnaast biedt de locatie kansen voor duurzame energieoplossingen. Uit verkennend onderzoek blijkt
+dat aquathermie, warmte-koudeopslag (WKO) en waterstoftoepassingen kunnen bijdragen aan een
+toekomstbestendige energievoorziening voor het terrein en de omliggende gebiedsontwikkeling.
+Veilige drinkwaterproductie
+Educatie en bewustwording
+Innovatie en recreatie combineren
+
+3
+WAT IS DE
+FLOURISHING
+BUSINESS CANVAS?
+De Flourishing Business Canvas is een model waarmee
+organisaties niet alleen economische waarde, maar ook sociale
+en ecologische waarde analyseren. Binnen dit project wordt het
+canvas gebruikt om de maatschappelijke meerwaarde van de
+nieuwe drinkwaterproductielocatie van Vitens inzichtelijk te
+maken.
+
+4
+TOTSTANDKOMING
+VAN HET CANVAS
+H e t F l o u r i s h i n g B u s i n e s s C a n v a s i s o p g e s t e l d o p b a s i s
+v a n g e s p r e k k e n m e t s t a k e h o l d e r s , l o c a t i e b e z o e k e n ,
+l i t e r a t u u r o n d e r z o e k e n d e C r e a t i v e C r o s s O v e r v a n 
+5 j u n i 2 0 2 6 .
+D e o p g e h a a l d e i n z i c h t e n z i j n v e r t a a l d n a a r a c t i v i t e i t e n ,
+s t a k e h o l d e r s , w a a r d e c r e a t i e , b a t e n e n k a n s e n v o o r d e
+n i e u w e d r i n k w a t e r p r o d u c t i e l o c a t i e v a n V i t e n s .
+Daarnaast zijn technische kansen rondom
+aquathermie, warmte-koudeopslag (WKO) en
+waterstoftoepassingen meegenomen vanuit
+aanvullend onderzoek.
+B e l a n g r i j k e b i j d r a g e n k w a m e n v a n V i t e n s , G e m e e n t e
+D e v e n t e r , G a s f a b r i e k D e v e n t e r , S a x i o n , H A N e n
+a n d e r e b e t r o k k e n s t a k e h o l d e r s .
+Samen bouwen aan een toekomstbestendige locatie waar
+water, natuur, energie en samenleving samenkomen
+Tijdens de Creative Cross Over van 5 juni 2026 zijn samen met stakeholders
+ideeën, kansen en knelpunten opgehaald en vertaald naar het canvas
+
+5
+De nieuwe drinkwaterproductielocatie
+vormt een ontmoetingsplek tussen
+techniek, natuur en samenleving. Door
+samenwerking tussen Vitens, onderwijs,
+overheid en bezoekers ontstaat een
+gebied met meervoudige waardecreatie.
+STAKEHOLDERS
+EN ACTOREN
+
+MEERVOUDIGE WAARDECREATIE
+biodiversiteit
+waterbuffering
+klimaatadaptatie
+vergroening IJsseloever
+6
+ Ecologische waarde Sociale waarde Economische waarde
+innovatie
+toerisme
+werkgelegenheid
+samenwerking onderwijs-bedrijfsleven
+duurzame energievoorziening
+energielevering aan omgeving
+nieuwe inkomstenstromen
+educatie
+recreatie
+gezondheid
+ontmoeting
+De nieuwe drinkwaterproductielocatie van Vitens creëert niet alleen functionele waarde voor Vitens, maar
+draagt ook bij aan natuurontwikkeling, recreatie, educatie en economische innovatie binnen het gebied.
+
+PRODUCTEN &amp; DIENSTEN
+FUNCTIES BINNEN DE NIEUWE DRINKWATERPRODUCTIELOCATIE
+7
+
+8
+
+9
+
+1 0</pre></details>
+<details class="bron-item"><summary>Battle of Concepts - resultaten swipe-app 2de cross-over</summary><pre>Battle of Concepts - resultaten swipe-app 2de cross-over
+Tijdens de tweede cross-over sessie zijn vier toekomstscenario’s voor het nieuwe gebied beoordeeld door stakeholders. Uit de resultaten blijkt dat Energiek Water en Bruisend Water het meest aansluiten bij de wensen en ambities voor de integrale gebiedsontwikkeling, maar dat er veel verschillende belangen naar boven drijven.
+
+Energiek Water werd het hoogst gewaardeerd, waarbij deelnemers vooral enthousiast waren over kansen voor energieopwekking uit water, samenwerking tussen organisaties en kennisdeling. Ook thema’s als eigenaarschap, weerbaarheid en innovatieve technieken werden regelmatig genoemd.
+
+Bruisend Water scoorde eveneens zeer positief. De aantrekkingskracht zit vooral in de combinatie van ontmoeting, recreatie, educatie en een levendige openbare ruimte. Stakeholders zagen kansen voor evenementen, kunst, samenwerking en het versterken van de relatie tussen het gebied en andere structuren van buitenaf. Denk aan de IJssel, de omliggende industrie, de poort van Deventer en natuurlijk de Deventer kennisas.
+
+Beschut Water werd gezien als een belangrijk scenario vanuit veiligheid, drinkwaterproductie en bedrijfsvoering. Tegelijkertijd vonden veel deelnemers het scenario te technisch en misten zij elementen die bijdragen aan natuur, beleving en maatschappelijke meerwaarde. Beschut Water moet overigens fungeren als rode draad, omdat de regels rond de waterproductie als eerste moeten worden nageleefd.
+
+Kabbelend Water werd ervaren als een realistisch en evenwichtig scenario, maar ook als minder ambitieus. Positieve reacties gingen over efficiënt ruimtegebruik, samenwerking tussen partijen en de mogelijkheden van een publiek warmtenet.
+
+Bij de beoordeling van de slagingskans binnen de eigen organisatie eindigde Energiek Water duidelijk op de eerste plaats, gevolgd door Kabbelend Water en Bruisend Water. Beschut Water scoorde het laagst. Dit is allemaal anoniem verkregen informatie van de betrokken stakeholders.
+
+Daarnaast werd gevraagd welke structuren de meeste invloed zouden moeten hebben op de toekomstige inrichting van het terrein. Daarbij kregen kennisdeling en innovatie de hoogste prioriteit, gevolgd door natuur en recreatie. Ook duurzame industrie, een herkenbare entree voor Deventer en ruimte voor horeca, evenementen en startups werden belangrijk gevonden. Als hier een combinatie in gevonden kan worden, dan wordt het een dynamisch, innovatief en groen terrein.
+
+Tot slot gaven deelnemers mee dat er aandacht moet zijn voor de periode tussen nu en het eindbeeld, het organiseren van gezamenlijke ambitie, een mogelijke bezoekersfunctie en verdere uitwerking van innovatieve energie- en wateroplossingen.</pre></details></div></section><section class="schetsen-section" id="schetsen"><div class="schetsen-container"><div class="section-header fade-in"><span class="section-number">10</span><h2 class="section-title">Ruimtelijke verkenningen</h2><p class="section-subtitle">Beelden als hulpmiddel om mogelijke richtingen bespreekbaar te maken</p></div><div class="onderbouwing-blok fade-in" style="max-width:1200px;"><span class="onderbouwing-label">Duiding</span><h3>Hoe moeten de schetsen gelezen worden?</h3><p>De beelden in deze sectie zijn ruimtelijke verkenningen. Ze zijn bedoeld om mogelijke richtingen, sfeer en functiecombinaties te laten zien. De beelden zijn geen definitief ontwerp en vormen geen technische uitwerking van de toekomstige productielocatie.</p></div><div class="schets-pagina fade-in"><figure class="schets-card"><img alt="Schets 1" src="fotos/v.jpg"/><figcaption>Schets 1. <strong>Waterpark met innovatiepaviljoens</strong></figcaption></figure><figure class="schets-card"><img alt="Schets 2" src="fotos/vi.jpg"/><figcaption>Schets 2. <strong>Waterpark met hoofdgebouw aan de IJssel</strong></figcaption></figure></div><div class="schets-pagina fade-in"><figure class="schets-card"><img alt="Schets 3" class="schets-volledig" src="fotos/vitenss.jpg"/><figcaption>Schets 3. <strong>Inspiratieschets ruimtelijke beleving</strong></figcaption></figure><figure class="schets-card"><img alt="Schets 4" class="schets-volledig" src="fotos/vite.jpg"/><figcaption>Schets 4. <strong>Uitgewerkte Palmbouttekening</strong></figcaption></figure></div><div class="schets-pagina fade-in"><figure class="schets-card"><img alt="Schets 5" class="schets-volledig" src="fotos/viten.jpg"/><figcaption>Schets 5. <strong>Zonering van productie, overgang en openbaar park</strong></figcaption></figure><figure class="schets-card"><img alt="Schets 6" class="schets-volledig" src="fotos/vitens.jpg"/><figcaption>Schets 6. <strong>Integrale gebiedsontwikkeling Vitens Deventer</strong></figcaption></figure></div></div></section><section class="section" id="ambitie">
+<div class="section-header fade-in">
+<span class="section-number">11</span>
+<h2 class="section-title">Kansrijke ambitierichting</h2>
+<p class="section-subtitle">Een richting waarin drinkwaterproductie, gebiedswaarde en samenwerking samenkomen</p>
+</div>
+<div class="ambition-banner fade-in">
+<h3>Verkende ambitierichting</h3>
+<p>S-Park wordt een plek waar betrouwbare drinkwaterproductie en openbare waarde elkaar versterken. De drinkwaterfunctie krijgt een veilige en afgesloten plek. Daaromheen ontstaat een publiek park met routes, groen en ontmoeting. Via een overgangszone met uitkijkpunt blijft het waterproces zichtbaar en begrijpelijk, zonder dat veiligheid en kwaliteit in gevaar komen. De ontwikkeling sluit aan op onderwijs en innovatie en biedt ruimte om in stappen te groeien. Restwarmte van Vitens verbindt het gebied met de omgeving.</p>
+</div>
+<div class="pillars-grid">
+<div class="pillar-card fade-in">
+<div class="pillar-icon">
+<svg fill="var(--secondary)" height="28" viewbox="0 0 24 24" width="28">
+<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+</svg>
+</div>
+<h4>Visieprincipes</h4>
+<p>Slimme Ruimtelijke verdeling met respect voor veiligheid én openbaarheid</p>
+</div>
+<div class="pillar-card fade-in">
+<div class="pillar-icon">
+<svg fill="var(--success)" height="28" viewbox="0 0 24 24" width="28">
+<rect height="18" rx="2" width="18" x="3" y="3"></rect>
+<path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="white" stroke-width="2"></path>
+</svg>
+</div>
+<h4>Ruimtelijk Raamwerk</h4>
+<p>Duidelijke zones met verbindingen tussen functies en de IJssel</p>
+</div>
+<div class="pillar-card fade-in">
+<div class="pillar-icon">
+<svg fill="var(--warning)" height="28" viewbox="0 0 24 24" width="28">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 6v6l4 2" stroke="white" stroke-width="2"></path>
+</svg>
+</div>
+<h4>Kansrijke functies</h4>
+<p>Uitkijkpunt, waterroute, ontmoeting, educatie en innovatie</p>
+</div>
+<div class="pillar-card fade-in">
+<div class="pillar-icon">
+<svg fill="var(--accent)" height="28" viewbox="0 0 24 24" width="28">
+<path d="M9 12l2 2 4-4"></path>
+<rect height="18" rx="2" width="18" x="3" y="3"></rect>
+</svg>
+</div>
+<h4>Randvoorwaarden</h4>
+<p>Veiligheid, toegangsbeheer en duurzame energie</p>
+</div>
+</div>
+</section><section class="section" id="aanbevelingen"><div class="section-header fade-in"><span class="section-number">12</span><h2 class="section-title">Aanbevelingen en vervolgstappen</h2><p class="section-subtitle">Concrete vervolgacties, actoren en indicatoren voor besluitvorming</p></div><div class="onderbouwing-blok fade-in" style="max-width:1200px;"><span class="onderbouwing-label">Verdieping</span><h3>Van verkenning naar vervolg</h3><p>De aanbevelingen hieronder zijn gebaseerd op de opgehaalde stakeholderinput, de scenario planning, de technische analyse en de toetsing via de Battle of concepts. Ze zijn bedoeld als richting voor vervolgbesluitvorming en niet als definitieve uitvoeringsopdracht.</p></div><div class="roadmap"><div class="roadmap-item fade-in"><div class="roadmap-number">1</div><div class="roadmap-content"><h4>Borg eerst de drinkwaterveiligheid</h4><p><strong>Actoren:</strong> Vitens en veiligheidsexperts. <strong>Indicatoren:</strong> heldere productiezone, gescheiden logistiek, gecontroleerde toegang en geen publieke toegang tot vitale onderdelen.</p></div></div><div class="roadmap-item fade-in"><div class="roadmap-number">2</div><div class="roadmap-content"><h4>Ontwikkel de overgangszone als leer- en zichtzone</h4><p><strong>Actoren:</strong> Vitens, gemeente, onderwijs en gebiedspartners. <strong>Indicatoren:</strong> zichtlijnen, informatiepunten, educatieve route en duidelijke scheiding tussen kijken en betreden.</p></div></div><div class="roadmap-item fade-in"><div class="roadmap-number">3</div><div class="roadmap-content"><h4>Werk aquathermie als eerste energiepijler verder uit</h4><p><strong>Actoren:</strong> Vitens, gemeente, Syntraal, Deltares en mogelijke warmtepartners. <strong>Indicatoren:</strong> businesscase, WKO-haalbaarheid, warmtecollectief en afspraken over afname in de omgeving.</p></div></div><div class="roadmap-item fade-in"><div class="roadmap-number">4</div><div class="roadmap-content"><h4>Verken een strategisch partnerschap rond waterstof</h4><p><strong>Actoren:</strong> Vitens, Essent/GROHW en gebiedspartners. <strong>Indicatoren:</strong> afspraken over ultra puur water, restwarmte, transportlijnen en rolverdeling.</p></div></div><div class="roadmap-item fade-in"><div class="roadmap-number">5</div><div class="roadmap-content"><h4>Gebruik het gebied als Living Lab</h4><p><strong>Actoren:</strong> Vitens, HAN, Saxion en technische partners. <strong>Indicatoren:</strong> jaarlijkse onderzoeksagenda, studentprojecten, testopstellingen en meetbare kennisopbrengst.</p></div></div><div class="roadmap-item fade-in"><div class="roadmap-number">6</div><div class="roadmap-content"><h4>Faseer publieke functies zorgvuldig</h4><p><strong>Actoren:</strong> Vitens, gemeente en gebiedspartners. <strong>Indicatoren:</strong> eerst basisveiligheid en routes, daarna educatie en beleving, vervolgens aanvullende functies zoals uitkijkpunt, evenementen of horeca.</p></div></div></div></section><section class="section" id="tijdlijn">
+<div class="section-header fade-in">
+<span class="section-number">13</span>
+<h2 class="section-title">Tijdlijn van het onderzoek</h2>
+<p class="tijdlijn-subtitle">Van eerste kennismaking tot eindpresentatie. De stappen hieronder laten zien welke informatie in twintig weken is opgehaald, hoe keuzes zijn onderbouwd en hoe de verkenning richting een gezamenlijke ambitierichting is gegroeid.</p>
+</div>
+<div class="timeline">
+<div class="timeline-item left fade-in">
+<span class="timeline-dot"></span>
+<div class="timeline-card">
+<div class="timeline-date">6 februari</div>
+<h4>Meet &amp; greet met opdrachtgever</h4>
+<p>Tijdens de meet en greet gaf Vitens een toelichting op de opgave, de doelen en de belangrijkste randvoorwaarden. Hiermee werd het vraagstuk scherp en konden de studenten gericht aan de slag.</p>
+</div>
+</div>
+<div class="timeline-item right fade-in">
+<span class="timeline-dot"></span>
+<div class="timeline-card">
+<div class="timeline-date">13 februari tot 27 februari</div>
+<h4>Plan van aanpak opstellen</h4>
+<p>In deze periode is het plan van aanpak uitgewerkt en aangescherpt. Denk aan de werkwijze, taakverdeling, planning en de onderzoeksvragen die nodig waren om de opgave goed te begrijpen.</p>
+</div>
+</div>
+<div class="timeline-item left fade-in">
+<span class="timeline-dot"></span>
+<div class="timeline-card">
+<div class="timeline-date">6 maart</div>
+<h4>Presentatie plan van aanpak</h4>
+<p>Het plan van aanpak is gepresenteerd aan Vitens. De feedback en gemaakte afspraken zijn gebruikt om de vervolgstappen en focus voor het onderzoek te bepalen.</p>
+</div>
+</div>
+<div class="timeline-item right fade-in">
+<span class="timeline-dot"></span>
+<div class="timeline-card">
+<div class="timeline-date">13 maart tot 10 april</div>
+<h4>Interviews met de stakeholders</h4>
+<p>Er zijn gesprekken gevoerd met verschillende belanghebbenden. Zo zijn wensen, zorgen en kansen opgehaald en is duidelijker geworden welke belangen er spelen in het gebied.</p>
+</div>
+</div>
+<div class="timeline-item left fade-in">
+<span class="timeline-dot"></span>
+<div class="timeline-card">
+<div class="timeline-date">17 april</div>
+<h4>Creatieve cross-over</h4>
+<p>In een gezamenlijke sessie met opdrachtgever en stakeholders zijn ideeën en perspectieven uitgewisseld. Dit hielp om gedeelde thema’s en mogelijke richtingen zichtbaar te maken.</p>
+</div>
+</div>
+<div class="timeline-item right fade-in">
+<span class="timeline-dot"></span>
+<div class="timeline-card">
+<div class="timeline-date">24 april</div>
+<h4>VUCA game</h4>
+<p>Met het VUCA game is ervaren hoe je omgaat met verandering en onzekerheid. Dit maakte de opgave concreter en gaf handvatten voor keuzes, samenwerking en terugkoppeling.</p>
+</div>
+</div>
+<div class="timeline-item left fade-in">
+<span class="timeline-dot"></span>
+<div class="timeline-card">
+<div class="timeline-date">1 mei tot 4 juni</div>
+<h4>Scenario’s en ruimtelijke verkenningen uitwerken</h4>
+<p>Na de creatieve cross-over zijn de opgehaalde wensen, kansen en risico’s geordend in scenario’s. Deze scenario’s zijn daarna vergeleken en vertaald naar ruimtelijke verkenningen en een kansrijke ambitierichting.</p>
+</div>
+</div>
+<div class="timeline-item right fade-in">
+<span class="timeline-dot"></span>
+<div class="timeline-card">
+<div class="timeline-date">5 juni</div>
+<h4>Battle of concepts met opdrachtgever</h4>
+<p>In de conceptensessie zijn de verschillende richtingen naast elkaar gezet. Samen met opdrachtgever en belanghebbenden is bepaald welke onderdelen het meest kansrijk zijn en waarom.</p>
+</div>
+</div>
+<div class="timeline-item left fade-in">
+<span class="timeline-dot"></span>
+<div class="timeline-card">
+<div class="timeline-date">26 juni</div>
+<h4>Eindoplevering en festival</h4>
+<p>De eindopdracht is ingeleverd en gepresenteerd tijdens het Ruimtemakers festival. Hiermee is het proces afgerond en zijn de resultaten gedeeld.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+
+<section class="section" id="teamreflectie">
+<div class="section-header fade-in">
+<span class="section-number">14</span>
+<h2 class="section-title">Teamreflectie</h2>
+<p class="section-subtitle">Terugblik op samenwerking, proces en onderzoek</p>
+</div>
+<div class="onderbouwing-blok fade-in" style="max-width:1200px;">
+<span class="onderbouwing-label">Reflectie</span>
+<h3>Dank aan betrokkenen</h3>
+<p>Ten eerste willen wij iedereen die betrokken is geweest bij dit visievormend onderzoek erg bedanken voor het meedoen en meedenken. Zonder onze betrokken opdrachtgevers en stakeholders hadden we geen goed onderzoek kunnen doen. Het was een eer om met deze specialisten samen te werken.</p>
+<h3>Reflectie op onze werkwijze</h3>
+<p>We hebben als Ruimtemakers team, onder begeleiding van Hans Oude Avenhuis, anders gewerkt dan we gewend waren. Je kunt gerust zeggen dat we grenzen hebben verlegd door anders een onderzoek te starten. We hebben creatief gewerkt met stakeholders en deze zo snel mogelijk betrokken bij het onderzoek, procesmatig gewerkt vanuit onderop, oplossingsgericht gedacht en waarde toegevoegd aan de nieuwe plannen van het drinkwaterproductiegebied.</p>
+</div>
+</section>
+<footer class="footer">
+<div class="footer-content">
+<h3>S-Park Deventer</h3>
+<p>Integrale gebiedsontwikkeling waar drinkwaterproductie en maatschappelijke waarde samenkomen.</p>
+<div class="footer-badges">
+<span class="footer-badge">Vitens</span>
+<span class="footer-badge">Gemeente Deventer</span>
+<span class="footer-badge">1618 Vastgoed</span>
+<span class="footer-badge">Saxion</span>
+
+<span class="footer-badge">Waterschap</span>
+</div>
+<p class="footer-copy">
+ Verkenning | Team Projectontwikkeling
+ </p>
+</div>
+</footer>
+<script>
+ // Scroll animations
+ const fadeElements = document.querySelectorAll('.fade-in');
+
+ const observer = new IntersectionObserver((entries) => {
+ entries.forEach(entry => {
+ if (entry.isIntersecting) {
+ entry.target.classList.add('visible');
+ }
+ });
+ }, {
+ threshold: 0.1,
+ rootMargin: '0px 0px -50px 0px'
+ });
+
+ fadeElements.forEach(el => observer.observe(el));
+
+ // Smooth scroll for navigation
+ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+ anchor.addEventListener('click', function (e) {
+ e.preventDefault();
+ const target = document.querySelector(this.getAttribute('href'));
+ if (target) {
+ target.scrollIntoView({
+ behavior: 'smooth',
+ block: 'start'
+ });
+ }
+ });
+ });
+
+ // Active nav link on scroll
+ const sections = document.querySelectorAll('section[id]');
+ const navLinks = document.querySelectorAll('.nav-links a');
+
+ window.addEventListener('scroll', () => {
+ let current = '';
+ sections.forEach(section => {
+ const sectionTop = section.offsetTop;
+ const sectionHeight = section.clientHeight;
+ if (scrollY >= sectionTop - 200) {
+ current = section.getAttribute('id');
+ }
+ });
+
+ navLinks.forEach(link => {
+ link.style.color = '';
+ if (link.getAttribute('href') === '#' + current) {
+ link.style.color = 'var(--primary)';
+ }
+ });
+ });
+ </script>
+<script>
+// Extra animaties en kleine interacties
+const nav = document.querySelector('.nav');
+const animatedCards = document.querySelectorAll('.challenge-card, .party-card, .scenario-card, .pillar-card, .timeline-card, .roadmap-content, .hoofdgebouw-card');
+
+window.addEventListener('scroll', () => {
+ if (window.scrollY > 24) {
+ nav.classList.add('scrolled');
+ } else {
+ nav.classList.remove('scrolled');
+ }
+
+ const hero = document.querySelector('.hero');
+ if (hero) {
+ hero.style.backgroundPositionY = `${window.scrollY * 0.05}px`;
+ }
+});
+
+animatedCards.forEach((card, index) => {
+ card.style.transitionDelay = `${(index % 4) * 0.05}s`;
+ card.addEventListener('mousemove', (event) => {
+ const rect = card.getBoundingClientRect();
+ const rotateY = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
+ const rotateX = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
+ card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+ });
+ card.addEventListener('mouseleave', () => {
+ card.style.transform = '';
+ });
+});
+</script>
+</body>
+</html>
